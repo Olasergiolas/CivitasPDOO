@@ -33,7 +33,7 @@ public class Civitas {
         private ArrayList<Casilla> casillas;
         private Casilla tempcas = new Casilla("Salida");
         
-        public Tablero(int i){
+        Tablero(int i){
             
             if (i >= 1){
                 numCasillaCarcel = i;
@@ -50,16 +50,16 @@ public class Civitas {
             tieneJuez = false;
         }
         
-        public boolean correcto(){
+        private boolean correcto(){
             boolean correcto = false;
 
-            if (casillas.size() > numCasillaCarcel)
+            if (casillas.size() > numCasillaCarcel && tieneJuez)
                 correcto = true;
             
             return correcto;
         }
         
-        public boolean correcto(int n){
+        private boolean correcto(int n){
             boolean b = false;
             
             if (correcto() && n <= casillas.size())
@@ -68,21 +68,84 @@ public class Civitas {
             return b;
         }
         
-        public int getCarcel(){
+        int getCarcel(){
             return numCasillaCarcel;
         }
-       
         
+        int getPorSalida()
+        {
+            int salida = porSalida;
+            if (porSalida > 0)
+            {
+                porSalida--;
+                salida++;
+            }
+            return salida;   
+        }
+        
+        void añadeCasilla (Casilla casilla)
+        {
+            Casilla Carcel = new Casilla("Cárcel");
+            if (casillas.size() == numCasillaCarcel)
+                casillas.add(Carcel);
+            
+            casillas.add(casilla);
+            
+            if (casillas.size() == numCasillaCarcel)
+                casillas.add(Carcel);
+        }
+        
+        void aniadeJuez()
+        {
+            Casilla Juez = new Casilla("Juez");
+            if (!tieneJuez)
+            {
+                casillas.add(Juez);
+                tieneJuez = true;
+            }
+        }
+        
+        Casilla getCasilla(int numCasilla)
+        {
+            Casilla auxiliar = null;
+            boolean correctisimo = correcto(numCasilla);
+            if (correctisimo)
+                auxiliar = casillas.get(numCasilla);
+            return auxiliar;
+        }
+        
+        int NuevaPosicion(int actual, int tirada)
+        {
+            int desplazamiento = actual+tirada;
+            if (correcto() && desplazamiento >= casillas.size())
+            {
+                desplazamiento %= casillas.size();
+                porSalida++;
+                
+            }
+            else if (!correcto())
+                desplazamiento = -1;
+            return desplazamiento;
+        }
+        
+        int calcularTirada(int origen, int destino)
+        {
+            int tirada = destino - origen;
+            if (tirada < 0)
+                tirada += casillas.size();
+            
+            return tirada;
+        }
     }
     
     class Casilla{
         private String nombre;
         
-        public Casilla (String n){
+        Casilla (String n){
             nombre = n;
         }
         
-        public String getNombre(){
+        String getNombre(){
             return nombre;
         }
     }
