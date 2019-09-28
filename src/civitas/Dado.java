@@ -55,18 +55,13 @@ public class Dado {
         debug = d;
         
         if (debug)
-            Diario.getInstance().ocurreEvento("Cambio a modo debug");
+            Diario.getInstance().ocurreEvento("Cambio a modo debug Dado");
                     
         else
-            Diario.getInstance().ocurreEvento("Fin modo debug");
+            Diario.getInstance().ocurreEvento("Fin modo debug Dado");
     }
     
     int getUltimoResultado(){
         return ultimoResultado;
     }
-    
-    
-    
-    
-    
 }
