@@ -65,3 +65,5 @@ public class Dado {
         return ultimoResultado;
     }
 }
+
+//asdoiasdaisd

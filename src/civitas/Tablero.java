@@ -116,3 +116,6 @@ public class Tablero {
         return tirada;
     }
 }
+
+
+//asidoasdddd
