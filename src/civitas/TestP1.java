@@ -28,11 +28,16 @@ public class TestP1 {
         
         D.setDebug(false);
         D.tirar();
-        System.out.println("\n" + D.getUltimoResultado() + " - Tirada para salir de la cárcel");
         if (D.salgoDeLaCarcel())
+        {
+            System.out.println("\n" + D.getUltimoResultado() + " - Tirada para salir de la cárcel");
             System.out.println("Yoshi paga la fianza y sale de la cárcel.");
+        }
         else
+        {
+            System.out.println("\n" + D.getUltimoResultado() + " - Tirada para salir de la cárcel");
             System.out.println("A Yoshi se le deniega la fianza y se queda en prisión.");
+        }
         
         MazoSorpresas mazoPrueba = new MazoSorpresas();
         Sorpresa uno = new Sorpresa();
@@ -43,13 +48,10 @@ public class TestP1 {
         mazoPrueba.habilitarCartaEspecial(dos);
         
         Diario Di = Diario.getInstance();
-        System.out.println("\n" + Di.eventosPendientes() + "\n");
-        System.out.println(Di.leerEvento());
-        System.out.println(Di.leerEvento());
-        System.out.println(Di.leerEvento());
-        System.out.println(Di.leerEvento());
-        System.out.println(Di.leerEvento());
-        System.out.println(Di.eventosPendientes() + "\n");
+        System.out.println("\n");
+        while(Di.eventosPendientes())
+            System.out.println(Di.leerEvento());
+        System.out.println("\n");
         
         Tablero tableroPrueba = new Tablero(4);
         Casilla Recogidas = new Casilla("Recogidas");
