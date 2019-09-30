@@ -12,27 +12,15 @@ package civitas;
 public class TestP1 {
     public static void main(String[] args)
     {
-        int jugador0 = 0, jugador1 = 0, jugador2 = 0, jugador3 = 0, indice;
+        int[] jugador = new int[4];
         Dado D = Dado.getInstance();
         for (int i = 0; i < 100; i++)
         {
-            indice = D.quienEmpieza(4);
-            switch (indice) {
-                case 0:
-                    jugador0++;
-                    break;
-                case 1:
-                    jugador1++;
-                    break;
-                case 2:
-                    jugador2++;
-                    break;
-                case 3:
-                    jugador3++;
-                    break;
-            }
+            jugador[D.quienEmpieza(4)]++;
         }
-        System.out.println(jugador0 + " " + jugador1 + " " + jugador2 + " " + jugador3 + "\n\n");
+        for (int i = 0; i < 4; i++)
+            System.out.println(jugador[i] + " jugador " + i);
+        System.out.println("\n\n");
         
         D.setDebug(true);
         for (int i = 0; i < 3; i++)
