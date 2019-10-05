@@ -10,8 +10,8 @@ package civitas;
  * @author rullow
  */
 public class TestP1 {
-    public static void main(String[] args)
-    {
+    
+    void test(){
         int[] jugador = new int[4];
         Dado D = Dado.getInstance();
         for (int i = 0; i < 100; i++)
@@ -69,5 +69,12 @@ public class TestP1 {
             anterior = tableroPrueba.NuevaPosicion(anterior,tiradat);
             System.out.println(anterior + " nueva posicion nº" + i);
         }
+    }
+    
+    public static void main(String[] args)
+    {
+        TestP1 Jugador = new TestP1();
+        
+        Jugador.test();
     }
 }
