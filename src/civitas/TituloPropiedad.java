@@ -11,7 +11,7 @@ package civitas;
  */
 public class TituloPropiedad {
     private float alquilerBase;
-    static private float factorInteresesHipoteca = 1.1f;
+    private static float factorInteresesHipoteca = 1.1f;
     private float factorRevalorizacion;
     private float hipotecaBase;
     private boolean hipotecado;

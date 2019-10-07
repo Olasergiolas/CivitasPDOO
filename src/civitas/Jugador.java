@@ -10,14 +10,14 @@ package civitas;
  * @author rullow
  */
 public class Jugador {
-    static protected int CasasMax = 4;
-    static protected int CasasPorHotel = 4;
+    protected static int CasasMax = 4;
+    protected static int CasasPorHotel = 4;
     protected boolean encarcelado;
-    static protected int HotelesMax = 4;
+    protected static int HotelesMax = 4;
     private String nombre;
     private int numCasillaActual;
-    static protected float PasoPorSalida = 1000f;
-    static protected float PrecioLibertad = 200f;
+    protected static float PasoPorSalida = 1000f;
+    protected static float PrecioLibertad = 200f;
     private boolean puedeComprar;
     private float saldo;
     private float saldoInicial = 7500f;

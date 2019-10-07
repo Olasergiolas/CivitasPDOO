@@ -16,7 +16,7 @@ public class Dado {
     private int ultimoResultado;
     private boolean debug;
     static final private Dado instance = new Dado();
-    private int SalidaCarcel = 5;
+    private static int SalidaCarcel = 5;
     
     private Dado(){
         //próximamente
