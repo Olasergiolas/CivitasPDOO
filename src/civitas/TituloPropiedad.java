@@ -20,8 +20,7 @@ public class TituloPropiedad {
     private int numHoteles;
     private float precioCompra;
     private float precioEdificar;
-    
-    //Falta un atributo propietario de tipo Jugador
+    private Jugador propietario;
  
     TituloPropiedad(String nom, float ab, float fr, float hb, float pc, float pe)
     {

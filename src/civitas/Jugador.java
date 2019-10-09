@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package civitas;
+import java.util.ArrayList;
 
 /**
  *
@@ -21,8 +22,8 @@ public class Jugador {
     private boolean puedeComprar;
     private float saldo;
     private float saldoInicial = 7500f;
-    //falta un array de títuloPropiedad llamado propiedades
-    //falta un dato de tipo Sorpresa llamado salvoconducto
+    private ArrayList<TituloPropiedad> propiedades;
+    private Sorpresa salvoconducto;
     
     Jugador(String nombre){
         throw new UnsupportedOperationException("No implementado");

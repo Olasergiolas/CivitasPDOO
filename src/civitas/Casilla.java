@@ -6,11 +6,10 @@ public class Casilla {
     private String nombre;
     private static int carcel;
     private float importe;
-    
-    //Falta un atributo de tipo TipoCasilla llamado tipo
-    //Falta un atributo de tipo MazoSorpresas llamado mazo
-    //Falta un atributo de tipo Sorpresa llamado sorpresa
-    //Falta un atributo de tipo TituloPropiedad llamado tituloPropiedad
+    private TipoCasilla tipo;
+    private TituloPropiedad tituloPropiedad;
+    private Sorpresa sorpresa;
+    private MazoSorpresas mazo;
         
     Casilla (String n){
         nombre = n;

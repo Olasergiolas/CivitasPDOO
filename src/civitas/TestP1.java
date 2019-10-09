@@ -40,13 +40,14 @@ public class TestP1 {
         }
         
         MazoSorpresas mazoPrueba = new MazoSorpresas();
-        Sorpresa uno = new Sorpresa();
-        Sorpresa dos = new Sorpresa();
+        /*Sorpresa uno = new Sorpresa();                //Deshabilitados temporalmente por la ausencia de un
+        Sorpresa dos = new Sorpresa();                  //constructor sin parámetros
         mazoPrueba.alMazo(uno);
         mazoPrueba.alMazo(dos);
         mazoPrueba.inhabilitarCartaEspecial(dos);
         mazoPrueba.habilitarCartaEspecial(dos);
-        
+        */
+
         Diario Di = Diario.getInstance();
         System.out.println("\n");
         while(Di.eventosPendientes())

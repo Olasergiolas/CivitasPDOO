@@ -9,7 +9,6 @@ public class Tablero {
     private int porSalida;
     private boolean tieneJuez;
     private ArrayList<Casilla> casillas;
-    private Casilla tempcas = new Casilla("Salida");
         
     Tablero(int i){
             
@@ -20,7 +19,8 @@ public class Tablero {
         else{
             numCasillaCarcel = 1;
         }
-            
+        
+        Casilla tempcas = new Casilla("Salida");    
         casillas = new ArrayList<Casilla>();
         casillas.add(tempcas);
             
@@ -116,6 +116,3 @@ public class Tablero {
         return tirada;
     }
 }
-
-
-//asidoasdddd
