@@ -52,27 +52,43 @@ public class TituloPropiedad {
     
     private boolean propietarioEncarcelado()
     {
-        return false;
+        boolean retorno = false;
+        if (propietario != null)
+            retorno = propietario.encarcelado;
+        return retorno;
     }
     
     float getImporteCancelarHipoteca(){
-        throw new UnsupportedOperationException("No implementado");
+        return (hipotecaBase*(1+numCasas*0.5f+numHoteles*2.5f)*factorInteresesHipoteca);
     }
     
     void actualizaPropietarioPorConversion(Jugador jugador){
-        throw new UnsupportedOperationException("No implementado");
+        propietario = jugador; // supongo que es así ???
     }
     
     boolean cancelarHipoteca(Jugador jugador){
-        throw new UnsupportedOperationException("No implementado");
+        boolean realizado = false;
+        if (hipotecado && jugador == propietario && jugador.getSaldo() >= getImporteCancelarHipoteca())
+        {
+            hipotecado = false;
+            realizado = true;
+        }
+        return realizado;
     }
     
     int cantidadCasasHoteles(){
-        throw new UnsupportedOperationException("No implementado");
+        return (numCasas+numHoteles);
     }
     
     boolean comprar(Jugador jugador){
-        throw new UnsupportedOperationException("No implementado");
+        boolean realizado = false;
+        if (propietario == null && jugador.getSaldo() >= precioCompra)
+        {
+            jugador.paga(precioCompra);
+            propietario = jugador;
+            realizado = true;
+        }
+        return realizado;
     }
     
     boolean construirCasa(Jugador jugador){
@@ -84,47 +100,56 @@ public class TituloPropiedad {
     }
     
     boolean derruirCasas(int n, Jugador jugador){
-        throw new UnsupportedOperationException("No implementado");
+        boolean retorno = false;
+        if (jugador == propietario && numCasas >= n)
+        {
+            numCasas -= n;
+            retorno = true;
+        }
+        return retorno;
     }
     
     private boolean esEsteElPropietario(Jugador jugador){
-        throw new UnsupportedOperationException("No implementado");
+        boolean retorno = false;
+        if (jugador == propietario)
+            retorno = true;
+        return retorno;
     }
     
     public boolean getHipotecado(){
-        throw new UnsupportedOperationException("No implementado");
+        return hipotecado;
     }
     
     private float getImporteHipoteca(){
-        throw new UnsupportedOperationException("No implementado");
+        return (hipotecaBase*(1+numCasas*0.5f+numHoteles*2.5f));
     }
     
     String getNombre(){
-        throw new UnsupportedOperationException("No implementado");
+        return nombre;
     }
     
     int getNumCasas(){
-        throw new UnsupportedOperationException("No implementado");
+        return numCasas;
     }
     
     int getNumHoteles(){
-        throw new UnsupportedOperationException("No implementado");
+        return numHoteles;
     }
     
     float getPrecioCompra(){
-        throw new UnsupportedOperationException("No implementado");
+        return precioCompra;
     }
     
     float getPrecioEdificar(){
-        throw new UnsupportedOperationException("No implementado");
+        return precioEdificar;
     }
     
     private float getPrecioVenta(){
-        throw new UnsupportedOperationException("No implementado");
+        return (precioCompra+numCasas+5*numHoteles+precioEdificar*factorRevalorizacion);
     }
     
     Jugador getPropietario(){
-        throw new UnsupportedOperationException("No implementado");
+        return propietario;
     }
     
     boolean hipotecar(Jugador jugador){
@@ -132,14 +157,28 @@ public class TituloPropiedad {
     }
     
     boolean tienePropietario(){
-        throw new UnsupportedOperationException("No implementado");
+        boolean retorno = false;
+        if (propietario != null)
+            retorno = true;
+        return retorno;
     }
     
     void tramitarAlquiler(Jugador jugador){
-        throw new UnsupportedOperationException("No implementado");
+        if (propietario != null && jugador != propietario)
+        {
+            jugador.pagaAlquiler(getPrecioAlquiler());
+            propietario.recibe(getPrecioAlquiler());
+        }
     }
     
     boolean vender(Jugador jugador){
-        throw new UnsupportedOperationException("No implementado");
+        boolean retorno = false;
+        if (jugador == propietario && !hipotecado)
+        {
+            propietario.recibe(getPrecioVenta());
+            propietario = null;
+            retorno = true;
+        }
+        return retorno;
     }
 }
