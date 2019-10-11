@@ -86,7 +86,7 @@ public class Jugador {
     }
     
     protected String getNombre(){
-        throw new UnsupportedOperationException("No implementado");
+        return nombre;
     }
     
     int getNumCasillaActual(){

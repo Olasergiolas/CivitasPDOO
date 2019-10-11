@@ -21,6 +21,11 @@ public class TituloPropiedad {
     private float precioCompra;
     private float precioEdificar;
     private Jugador propietario;
+    
+    TituloPropiedad()
+    {
+        propietario = null;
+    }
  
     TituloPropiedad(String nom, float ab, float fr, float hb, float pc, float pe)
     {
