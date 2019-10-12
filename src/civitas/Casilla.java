@@ -12,39 +12,58 @@ public class Casilla {
     private MazoSorpresas mazo;
         
     Casilla (String n){
+        init();
+        tipo = TipoCasilla.DESCANSO;
         nombre = n;
     }
     
     Casilla(TituloPropiedad titulo){
-        throw new UnsupportedOperationException("No implementado");
+        init();
+        tipo = TipoCasilla.CALLE;
+        nombre = titulo.getNombre();
+        tituloPropiedad = titulo;
     }
     
     Casilla(float cantidad, String nombre){
-        throw new UnsupportedOperationException("No implementado");
+        init();
+        tipo = TipoCasilla.IMPUESTO;
+        importe = cantidad;
+        this.nombre = nombre;
     }
     
     Casilla(int numCasillaCarcel, String nombre){
-        throw new UnsupportedOperationException("No implementado");
+        init();
+        tipo = TipoCasilla.JUEZ;
+        carcel = numCasillaCarcel;
+        this.nombre = nombre;
     }
     
     Casilla(MazoSorpresas mazo, String nombre){
-        throw new UnsupportedOperationException("No implementado");
+        init();
+        tipo = TipoCasilla.SORPRESA;
+        this.mazo = mazo;
+        this.nombre = nombre;
     }
     
     public String getNombre(){
-        throw new UnsupportedOperationException("No implementado");
+        return nombre;
     }
     
     TituloPropiedad getTituloPropiedad(){
-        throw new UnsupportedOperationException("No implementado");
+        return tituloPropiedad;
     }
     
     private void informe(int iactual, Jugador[] todos){
-        throw new UnsupportedOperationException("No implementado");
+        Diario.getInstance().ocurreEvento("El jugador " + iactual + "ha caído en la casilla " + nombre);
     }
     
     private void init(){
-        throw new UnsupportedOperationException("No implementado");
+        nombre = " ";
+        importe = 0;
+        tipo = null;
+        tituloPropiedad = null;
+        sorpresa = null;
+        mazo = null;
     }
     
     public boolean jugadorCorrecto(int iactual, Jugador[] todos){
@@ -72,6 +91,6 @@ public class Casilla {
     }
     
     public String toString(){
-        throw new UnsupportedOperationException("No implementado");
+        return (nombre + " carcel-" + carcel + " importe-" + importe + " sorpresa-" + sorpresa.toString() + " titulo-" + tituloPropiedad.getNombre());
     }
 }
