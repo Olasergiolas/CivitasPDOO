@@ -67,11 +67,24 @@ public class Casilla {
     }
     
     public boolean jugadorCorrecto(int iactual, Jugador[] todos){
-        throw new UnsupportedOperationException("No implementado");
+        boolean retorno = false;
+        if (iactual > 0 && iactual < todos.length)
+            retorno = true;
+        return retorno;
     }
     
     void recibeJugador(int iactual, Jugador[] todos){
-        throw new UnsupportedOperationException("No implementado");
+        boolean correcto = jugadorCorrecto(iactual, todos);
+        if (correcto)
+            informe(iactual, todos);
+        if (tipo == TipoCasilla.CALLE && correcto)
+            recibeJugador_calle(iactual, todos);
+        else if (tipo == TipoCasilla.IMPUESTO && correcto)
+            recibeJugador_impuesto(iactual, todos);
+        else if (tipo == TipoCasilla.JUEZ && correcto)
+            recibeJugador_juez(iactual, todos);
+        else if (tipo == TipoCasilla.SORPRESA && correcto)
+            recibeJugador_sorpresa(iactual, todos);
     }
     
     private void recibeJugador_calle(int iactual, Jugador[] todos){
@@ -79,11 +92,11 @@ public class Casilla {
     }
     
     private void recibeJugador_impuesto(int iactual, Jugador[] todos){
-        throw new UnsupportedOperationException("No implementado");
+        todos[iactual].pagaImpuesto(importe);
     }
     
     private void recibeJugador_juez(int iactual, Jugador[] todos){
-        throw new UnsupportedOperationException("No implementado");
+        todos[iactual].encarcelar(carcel);
     }
     
     private void recibeJugador_sorpresa(int iactual, Jugador[] todos){
