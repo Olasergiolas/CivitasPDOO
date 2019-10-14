@@ -104,6 +104,6 @@ public class Casilla {
     }
     
     public String toString(){
-        return (nombre + " carcel-" + carcel + " importe-" + importe + " sorpresa-" + sorpresa.toString() + " titulo-" + tituloPropiedad.getNombre());
+        return (nombre + " carcel-" + carcel + " importe-" + importe + " sorpresa-" + sorpresa.toString() + " titulo-" + tituloPropiedad.toString());
     }
 }

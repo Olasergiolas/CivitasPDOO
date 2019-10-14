@@ -130,7 +130,7 @@ public class Sorpresa {
     }
     
     public String toString(){
-        return texto;
+        return ("texto-" + texto + " valor-" + valor);
     }
     
     void usada(){

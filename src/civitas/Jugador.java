@@ -10,7 +10,7 @@ import java.util.ArrayList;
  *
  * @author rullow
  */
-public class Jugador {
+public class Jugador implements Comparable<Jugador>{
     protected static int CasasMax = 4;
     protected static int CasasPorHotel = 4;
     protected boolean encarcelado;
@@ -26,11 +26,21 @@ public class Jugador {
     private Sorpresa salvoconducto;
     
     Jugador(String nombre){
-        throw new UnsupportedOperationException("No implementado");
+        this.nombre = nombre;
+        encarcelado = false;
+        puedeComprar = true;
+        saldo = saldoInicial;
+        salvoconducto = null;
     }
     
     protected Jugador(Jugador otro){
-        throw new UnsupportedOperationException("No implementado");
+        encarcelado = otro.encarcelado;
+        nombre = otro.nombre;
+        numCasillaActual = otro.numCasillaActual;
+        puedeComprar = otro.puedeComprar;
+        saldo = otro.saldo;
+        propiedades = otro.propiedades;
+        salvoconducto = otro.salvoconducto;
     }
     
     boolean cancelarHipoteca(int ip){
@@ -38,11 +48,19 @@ public class Jugador {
     }
     
     int cantidadCasasHoteles(){
-        throw new UnsupportedOperationException("No implementado");
+        int suma = 0;
+        for (int i = 0; i < propiedades.size(); i++)
+            suma += propiedades.get(i).cantidadCasasHoteles();
+        return suma;
     }
     
     public int compareTo(Jugador otro){
-        throw new UnsupportedOperationException("No implementado");
+        int retorno = 0;
+        if (saldo > otro.saldo)
+            retorno = 1;
+        else if (saldo < otro.saldo)
+            retorno = -1;
+        return retorno;
     }
     
     boolean comprar(TituloPropiedad titulo){
@@ -58,31 +76,51 @@ public class Jugador {
     }
     
     protected boolean debeSerEncarcelado(){
-        throw new UnsupportedOperationException("No implementado");
+        boolean retorno = false;
+        if (!encarcelado && !tieneSalvoconducto())
+            retorno = true;
+        else if (!encarcelado && tieneSalvoconducto())
+        {
+            perderSalvoconducto();
+            Diario.getInstance().ocurreEvento("El jugador " + nombre + " se libra de la cárcel.");
+        }
+            return retorno;
     }
     
     boolean enBancarrota(){
-        throw new UnsupportedOperationException("No implementado");
+        boolean broke = false;
+        if (saldo < 0)
+            broke = true;
+        return broke;
     }
     
     boolean encarcelar(int numCasillaCarcel){
-        throw new UnsupportedOperationException("No implementado");
+        if (debeSerEncarcelado())
+        {
+            moverACasilla(numCasillaCarcel);
+            encarcelado = true;
+            Diario.getInstance().ocurreEvento("El jugador " + nombre + " es encarcelado.");
+        }
+        return encarcelado;
     }
     
     private boolean existeLaPropiedad(int ip){
-        throw new UnsupportedOperationException("No implementado");
+        boolean retorno = false;
+        if (ip > 0 && ip < propiedades.size())
+            retorno = true;
+        return retorno;
     }
     
     private int getCasasMax(){
-        throw new UnsupportedOperationException("No implementado");
+        return CasasMax;
     }
     
     int getCasasPorHotel(){
-        throw new UnsupportedOperationException("No implementado");
+        return CasasPorHotel;
     }
     
     private int getHotelesMax(){
-        throw new UnsupportedOperationException("No implementado");
+        return HotelesMax;
     }
     
     protected String getNombre(){
@@ -90,27 +128,27 @@ public class Jugador {
     }
     
     int getNumCasillaActual(){
-        throw new UnsupportedOperationException("No implementado");
+        return numCasillaActual;
     }
     
     private float getPrecioLibertad(){
-        throw new UnsupportedOperationException("No implementado");
+        return PrecioLibertad;
     }
     
     private float getPremioPasoSalida(){
-        throw new UnsupportedOperationException("No implementado");
+        return 1000;
     }
     
-    protected TituloPropiedad[] getPropiedades(){   
-        throw new UnsupportedOperationException("No implementado");
+    protected ArrayList<TituloPropiedad> getPropiedades(){   
+        return propiedades;
     }
     
     boolean getPuedeComprar(){
-        throw new UnsupportedOperationException("No implementado");
+        return puedeComprar;
     }
     
     protected float getSaldo(){
-        throw new UnsupportedOperationException("No implementado");
+        return saldo;
     }
     
     boolean hipotecar(int ip){
@@ -118,86 +156,168 @@ public class Jugador {
     }
     
     public boolean isEncarcelado(){
-        throw new UnsupportedOperationException("No implementado");
+        return encarcelado;
     }
     
     boolean modificarSaldo(float cantidad){
-        throw new UnsupportedOperationException("No implementado");
+        saldo += cantidad;
+        Diario.getInstance().ocurreEvento("Se le incrementa el saldo al jugador " + nombre + " en " + cantidad + " euros.");
+        return true;
     }
     
     boolean moverACasilla(int numCasilla){
-        throw new UnsupportedOperationException("No implementado");
+        boolean retorno = false;
+        if (!encarcelado)
+        {
+            Diario.getInstance().ocurreEvento("Se mueve al jugador " + nombre + " de la casilla " + numCasillaActual + " a la casilla " + numCasilla);
+            numCasillaActual = numCasilla;
+            puedeComprar = false;
+            retorno = true;
+        }
+        return retorno;
     }
     
     boolean obtenerSalvoconducto(Sorpresa sorpresa){
-        throw new UnsupportedOperationException("No implementado");
+        boolean retorno = false;
+        if (!encarcelado)
+        {
+            salvoconducto = sorpresa;
+            retorno = true;
+        }
+        return retorno;
     }
     
     boolean paga(float cantidad){
-        throw new UnsupportedOperationException("No implementado");
+        return modificarSaldo(cantidad*-1);
     }
     
     boolean pagaAlquiler(float cantidad){
-        throw new UnsupportedOperationException("No implementado");
+        boolean retorno = false;
+        if (!encarcelado)
+            retorno = paga(cantidad);
+        return retorno;
     }
     
     boolean pagaImpuesto(float cantidad){
-        throw new UnsupportedOperationException("No implementado");
+        boolean retorno = false;
+        if (!encarcelado)
+            retorno = paga(cantidad);
+        return retorno;
     }
     
     boolean pasaPorSalida(){
-        throw new UnsupportedOperationException("No implementado");
+        modificarSaldo(1000);
+        Diario.getInstance().ocurreEvento("El jugador " + nombre + " recibe 1000€ por pasar por salida");
+        return true;
     }
     
     private void perderSalvoconducto(){
-        throw new UnsupportedOperationException("No implementado");
+        salvoconducto.usada();
+        salvoconducto = null;
     }
     
     boolean puedeComprarCasilla(){
-        throw new UnsupportedOperationException("No implementado");
+        puedeComprar = true;
+        if (encarcelado)
+            puedeComprar = false;
+        return puedeComprar;
     }
     
     private boolean puedeSalirCarcelPagando(){
-        throw new UnsupportedOperationException("No implementado");
+        boolean retorno = false;
+        if (saldo >= 200)
+            retorno = true;
+        return retorno;
     }
     
     private boolean puedoEdificarCasa(TituloPropiedad propiedad){
-        throw new UnsupportedOperationException("No implementado");
+        boolean retorno = false;
+        if (propiedad.getPropietario() == this && saldo >= propiedad.getPrecioEdificar() && propiedad.getNumCasas() < 4)
+            retorno = true;
+        return retorno;
     }
     
     private boolean puedoEdificarHotel(TituloPropiedad propiedad){
-        throw new UnsupportedOperationException("No implementado");
+        boolean retorno = false;
+        if (propiedad.getPropietario() == this && saldo >= propiedad.getPrecioEdificar() && propiedad.getNumHoteles() < 4)
+            retorno = true;
+        return retorno;
     }
     
     private boolean puedoGastar(float precio){
-        throw new UnsupportedOperationException("No implementado");
+        boolean retorno = false;
+        if (!encarcelado && saldo >= precio)
+            retorno = true;
+        return retorno;
     }
     
     boolean recibe(float cantidad){
-        throw new UnsupportedOperationException("No implementado");
+        boolean retorno = false;
+        if (!encarcelado)
+        {
+            modificarSaldo(cantidad);
+            retorno = true;
+        }
+        return retorno;
     }
     
     boolean salirCarcelPagando(){
-        throw new UnsupportedOperationException("No implementado");
+        boolean retorno = false;
+        if (encarcelado && puedeSalirCarcelPagando())
+        {
+            paga(200);
+            encarcelado = false;
+            Diario.getInstance().ocurreEvento("El jugador " + nombre + " sale de la cárcel pagando.");
+            retorno = true;
+        }
+        return retorno;
     }
     
     boolean salirCarcelTirando(){
-        throw new UnsupportedOperationException("No implementado");
+        boolean retorno = false;
+        if (encarcelado && Dado.getInstance().salgoDeLaCarcel())
+        {
+            encarcelado = false;
+            Diario.getInstance().ocurreEvento("El jugador " + nombre + " sale de la cárcel con una tirada.");
+            retorno = true;
+        }
+        return retorno;
     }
     
     boolean tieneAlgoQueGestionar(){
-        throw new UnsupportedOperationException("No implementado");
+        boolean retorno = false;
+        if (propiedades.size() > 0)
+            retorno = true;
+        return retorno;
     }
     
     boolean tieneSalvoconducto(){
-        throw new UnsupportedOperationException("No implementado");
+        boolean retorno = false;
+        if (salvoconducto != null)
+            retorno = true;
+        return retorno;
     }
     
     public String toString(){
-        throw new UnsupportedOperationException("No implementado");
+        String retorno = "encarcelado-" + encarcelado + " nombre-" + nombre + " numCasillaActual-" + numCasillaActual;
+        for (int i = 0; i < propiedades.size(); i++)
+            retorno += "titulo" + i + propiedades.get(i).toString();
+        
+        return retorno;
     }
     
     boolean vender(int ip){
-        throw new UnsupportedOperationException("No implementado");
+        boolean retorno = false;
+        if (!encarcelado  && existeLaPropiedad(ip))
+        {
+            if (propiedades.get(ip).vender(this))
+            {
+                propiedades.remove(ip);
+                Diario.getInstance().ocurreEvento("El jugador " + nombre + " vende la propiedad " + propiedades.get(ip).getNombre());
+                retorno = true;
+            }
+        }
+        return retorno;
     }
+    
 }
