@@ -54,10 +54,7 @@ public class Tablero {
     {
         int salida = porSalida;
         if (porSalida > 0)
-        {
             porSalida--;
-            salida++;
-        }
         
         return salida;   
     }

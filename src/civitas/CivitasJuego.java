@@ -19,7 +19,7 @@ public class CivitasJuego {
     private GestorEstados gestorEstados;
     
     public CivitasJuego(String[] nombres){
-        throw new UnsupportedOperationException("No implementado");
+        throw new UnsupportedOperationException("No implementado");             //no sé hacerlo
     }
     
     private void avanzaJugador (){
@@ -27,7 +27,7 @@ public class CivitasJuego {
     }
     
     public boolean cancelarHipoteca(int ip){
-        throw new UnsupportedOperationException("No implementado");
+        return jugadores.get(indiceJugadorActual).cancelarHipoteca(ip);
     }
     
     public boolean comprar(){
@@ -35,59 +35,66 @@ public class CivitasJuego {
     }
     
     public boolean construirCasa(int ip){
-        throw new UnsupportedOperationException("No implementado");
+        return jugadores.get(indiceJugadorActual).construirCasa(ip);
     }
     
     public boolean construirHotel(int ip){
-        throw new UnsupportedOperationException("No implementado");
+        return jugadores.get(indiceJugadorActual).construirHotel(ip);
     }
     
     private void contabilizarPasosPorSalida(Jugador jugadorActual){
-        throw new UnsupportedOperationException("No implementado");
+        while (tablero.getPorSalida() > 0)
+            jugadorActual.pasaPorSalida();
     }
     
     public boolean finalDelJuego(){
-        throw new UnsupportedOperationException("No implementado");
+        boolean retorno = false;
+        for (int i = 0; i < jugadores.size() && jugadores.get(i).enBancarrota(); i++)
+            retorno = jugadores.get(i).enBancarrota();
+        return retorno;
     }
     
     public Casilla getCasillaActual(){
-        throw new UnsupportedOperationException("No implementado");
+        return tablero.getCasilla(jugadores.get(indiceJugadorActual).getNumCasillaActual());
     }
     
     public Jugador getJugadorActual(){
-        throw new UnsupportedOperationException("No implementado");
+        return jugadores.get(indiceJugadorActual);
     }
     
     public boolean hipotecar(int ip){
-        throw new UnsupportedOperationException("No implementado");
+        return jugadores.get(indiceJugadorActual).hipotecar(ip);
     }
     
     public String infoJugadorTexto(){
+        return jugadores.get(indiceJugadorActual).toString();
+    }
+    
+    private void inicializarMazoSorpresas(Tablero tablero){                     //no sé hacerlo
         throw new UnsupportedOperationException("No implementado");
     }
     
-    private void inicializarMazoSorpresas(Tablero tablero){
-        throw new UnsupportedOperationException("No implementado");
-    }
-    
-    private void inicializarTablero(MazoSorpresas mazo){
+    private void inicializarTablero(MazoSorpresas mazo){                        //no sé hacerlo                       
         throw new UnsupportedOperationException("No implementado");
     }
     
     private void pasarTurno(){
-        throw new UnsupportedOperationException("No implementado");
+        if (indiceJugadorActual < jugadores.size())
+            indiceJugadorActual++;
+        else
+            indiceJugadorActual = 0;
     }
     
     private Jugador[] ranking(){
-        throw new UnsupportedOperationException("No implementado");
+        throw new UnsupportedOperationException("No implementado");             //no sé hacerlo
     }
     
     public boolean salirCarcelPagando(){
-        throw new UnsupportedOperationException("No implementado");
+        return jugadores.get(indiceJugadorActual).salirCarcelPagando();
     }
     
     public boolean salirCarcelTirando(){
-        throw new UnsupportedOperationException("No implementado");
+        return jugadores.get(indiceJugadorActual).salirCarcelTirando();
     }
     
     public OperacionesJuego siguientePaso(){
@@ -95,10 +102,10 @@ public class CivitasJuego {
     }
     
     public void siguientePasoCompletado(OperacionesJuego operacion){
-        throw new UnsupportedOperationException("No implementado");
+        estado = gestorEstados.siguienteEstado(jugadores.get(indiceJugadorActual), estado, operacion);
     }
     
     public boolean vender(int ip){
-        throw new UnsupportedOperationException("No implementado");
+        return jugadores.get(indiceJugadorActual).vender(ip);
     }   
 }
