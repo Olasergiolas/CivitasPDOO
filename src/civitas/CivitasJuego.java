@@ -5,6 +5,7 @@
  */
 package civitas;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  *
@@ -19,7 +20,13 @@ public class CivitasJuego {
     private GestorEstados gestorEstados;
     
     public CivitasJuego(String[] nombres){
-        throw new UnsupportedOperationException("No implementado");             //no sé hacerlo
+        for (int i = 0; i < nombres.length; i++)
+            jugadores.add(i, new Jugador(nombres[i]));
+        
+        tablero = new Tablero(5);
+        mazo = new MazoSorpresas();
+        inicializarTablero(mazo);
+        inicializarMazoSorpresas(tablero);
     }
     
     private void avanzaJugador (){
@@ -70,12 +77,20 @@ public class CivitasJuego {
         return jugadores.get(indiceJugadorActual).toString();
     }
     
-    private void inicializarMazoSorpresas(Tablero tablero){                     //no sé hacerlo
-        throw new UnsupportedOperationException("No implementado");
+    private void inicializarMazoSorpresas(Tablero tablero){                 
+        mazo.alMazo(new Sorpresa(TipoSorpresa.IRCARCEL, tablero));
+        mazo.alMazo(new Sorpresa(TipoSorpresa.IRCASILLA, tablero, 200, "sorpresa IRCARCEL"));
+        mazo.alMazo(new Sorpresa(TipoSorpresa.SALIRCARCEL, mazo));
+        mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR, 200, "sorpresa PAGARCOBRAR"));
     }
     
-    private void inicializarTablero(MazoSorpresas mazo){                        //no sé hacerlo                       
-        throw new UnsupportedOperationException("No implementado");
+    private void inicializarTablero(MazoSorpresas mazo){                                            
+        ArrayList<Casilla> c = new ArrayList<Casilla>();
+        c.add(new Casilla(200, "Impuesto"));
+        c.add(new Casilla(5, "Cárcel"));
+        c.add(new Casilla(new TituloPropiedad()));
+        c.add(new Casilla(mazo, "Sorpresa"));
+        c.add(new Casilla("Descanso"));
     }
     
     private void pasarTurno(){
@@ -85,8 +100,9 @@ public class CivitasJuego {
             indiceJugadorActual = 0;
     }
     
-    private Jugador[] ranking(){
-        throw new UnsupportedOperationException("No implementado");             //no sé hacerlo
+    private ArrayList<Jugador> ranking(){
+        Collections.sort(jugadores);
+        return jugadores;
     }
     
     public boolean salirCarcelPagando(){
