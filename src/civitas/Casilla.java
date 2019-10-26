@@ -53,7 +53,7 @@ public class Casilla {
         return tituloPropiedad;
     }
     
-    private void informe(int iactual, Jugador[] todos){
+    private void informe(int iactual, ArrayList<Jugador> todos){
         Diario.getInstance().ocurreEvento("El jugador " + iactual + "ha caído en la casilla " + nombre);
     }
     
@@ -66,14 +66,14 @@ public class Casilla {
         mazo = null;
     }
     
-    public boolean jugadorCorrecto(int iactual, Jugador[] todos){
+    public boolean jugadorCorrecto(int iactual, ArrayList<Jugador> todos){
         boolean retorno = false;
-        if (iactual > 0 && iactual < todos.length)
+        if (iactual > 0 && iactual < todos.size())
             retorno = true;
         return retorno;
     }
     
-    void recibeJugador(int iactual, Jugador[] todos){
+    void recibeJugador(int iactual, ArrayList<Jugador> todos){
         boolean correcto = jugadorCorrecto(iactual, todos);
         if (correcto)
             informe(iactual, todos);
@@ -87,19 +87,19 @@ public class Casilla {
             recibeJugador_sorpresa(iactual, todos);
     }
     
-    private void recibeJugador_calle(int iactual, Jugador[] todos){
+    private void recibeJugador_calle(int iactual, ArrayList<Jugador> todos){
         throw new UnsupportedOperationException("No implementado");
     }
     
-    private void recibeJugador_impuesto(int iactual, Jugador[] todos){
-        todos[iactual].pagaImpuesto(importe);
+    private void recibeJugador_impuesto(int iactual, ArrayList<Jugador> todos){
+        todos.get(iactual).pagaImpuesto(importe);
     }
     
-    private void recibeJugador_juez(int iactual, Jugador[] todos){
-        todos[iactual].encarcelar(carcel);
+    private void recibeJugador_juez(int iactual, ArrayList<Jugador> todos){
+        todos.get(iactual).encarcelar(carcel);
     }
     
-    private void recibeJugador_sorpresa(int iactual, Jugador[] todos){
+    private void recibeJugador_sorpresa(int iactual, ArrayList<Jugador> todos){
         throw new UnsupportedOperationException("No implementado");
     }
     

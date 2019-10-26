@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package civitas;
+import java.util.ArrayList;
 
 /**
  *
@@ -44,7 +45,7 @@ public class Sorpresa {
         this.mazo = mazo;
     }
     
-    void aplicarAJugador(int actual, Jugador[] todos){
+    void aplicarAJugador(int actual, ArrayList<Jugador> todos){
         boolean correcto = jugadorCorrecto(actual, todos);
         if (correcto)
             informe(actual, todos);
@@ -62,31 +63,31 @@ public class Sorpresa {
             aplicarAJugador_salirCarcel(actual, todos);
     }
     
-    private void aplicarAJugador_irACasilla(int actual, Jugador[] todos){
+    private void aplicarAJugador_irACasilla(int actual, ArrayList<Jugador> todos){
         int casillaActual,  nueva_posicion;
-        casillaActual = todos[actual].getNumCasillaActual();
+        casillaActual = todos.get(actual).getNumCasillaActual();
         nueva_posicion = tablero.NuevaPosicion(casillaActual, tablero.calcularTirada(casillaActual, valor));
-        todos[actual].moverACasilla(nueva_posicion);
+        todos.get(actual).moverACasilla(nueva_posicion);
         tablero.getCasilla(valor).recibeJugador(actual, todos);
 
     }
     
-    private void aplicarAJugador_irCarcel(int actual, Jugador[] todos){
-        todos[actual].encarcelar(tablero.getCarcel());
+    private void aplicarAJugador_irCarcel(int actual, ArrayList<Jugador> todos){
+        todos.get(actual).encarcelar(tablero.getCarcel());
     }
     
-    private void aplicarAJugador_pagarCobrar(int actual, Jugador[] todos){
-        todos[actual].modificarSaldo(valor);
+    private void aplicarAJugador_pagarCobrar(int actual, ArrayList<Jugador> todos){
+        todos.get(actual).modificarSaldo(valor);
     }
     
-    private void aplicarAJugador_porCasaHotel(int actual, Jugador[] todos){
-        todos[actual].modificarSaldo(valor*todos[actual].getCasasPorHotel());
+    private void aplicarAJugador_porCasaHotel(int actual, ArrayList<Jugador> todos){
+        todos.get(actual).modificarSaldo(valor*todos.get(actual).getCasasPorHotel());
     }
     
-    private void aplicarAJugador_porJugador(int actual, Jugador[] todos){
+    private void aplicarAJugador_porJugador(int actual, ArrayList<Jugador> todos){
         Sorpresa Dar = new Sorpresa(TipoSorpresa.PAGARCOBRAR, valor*-1, "Dar Dinero");
-        Sorpresa Recibir = new Sorpresa(TipoSorpresa.PAGARCOBRAR, valor*(todos.length-1), "Recibir Dinero");
-        for (int i = 0; i < todos.length; i++)
+        Sorpresa Recibir = new Sorpresa(TipoSorpresa.PAGARCOBRAR, valor*(todos.size()-1), "Recibir Dinero");
+        for (int i = 0; i < todos.size(); i++)
         {
             if (i != actual)
                 Dar.aplicarAJugador(i, todos);
@@ -95,20 +96,20 @@ public class Sorpresa {
         
     }
     
-    private void aplicarAJugador_salirCarcel(int actual, Jugador[] todos){
+    private void aplicarAJugador_salirCarcel(int actual, ArrayList<Jugador> todos){
         boolean alguien_tiene = false;
-        for (int i = 0; i < todos.length; i++)
-            alguien_tiene = todos[i].tieneSalvoconducto();
+        for (int i = 0; i < todos.size(); i++)
+            alguien_tiene = todos.get(i).tieneSalvoconducto();
         
         if (!alguien_tiene)
         {
-            todos[actual].obtenerSalvoconducto(this);
+            todos.get(actual).obtenerSalvoconducto(this);
             salirDelMazo();
         }
     }
     
-    private void informe(int actual, Jugador[] todos){
-        Diario.getInstance().ocurreEvento("Se le aplica la sorpresa" + texto + " a " + todos[actual].getNombre());
+    private void informe(int actual, ArrayList<Jugador> todos){
+        Diario.getInstance().ocurreEvento("Se le aplica la sorpresa" + texto + " a " + todos.get(actual).getNombre());
     }
     
     private void init(){
@@ -117,9 +118,9 @@ public class Sorpresa {
         tablero = null;
     }
     
-    public boolean jugadorCorrecto(int actual, Jugador[] todos){
+    public boolean jugadorCorrecto(int actual, ArrayList<Jugador> todos){
         boolean retorno = false;
-        if (actual > 0 && actual < todos.length)
+        if (actual > 0 && actual < todos.size())
             retorno = true;
         return retorno;
     }

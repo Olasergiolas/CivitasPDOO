@@ -30,7 +30,21 @@ public class CivitasJuego {
     }
     
     private void avanzaJugador (){
-        throw new UnsupportedOperationException("No implementado");
+        Jugador jugadorActual;
+        int posicionActual, posicionNueva;
+        int tirada;
+        Casilla c;
+        
+        jugadorActual = jugadores.get(indiceJugadorActual);
+        posicionActual = jugadorActual.getNumCasillaActual();
+        tirada = Dado.getInstance().tirar();
+        posicionNueva = tablero.NuevaPosicion(posicionActual, tirada);
+        c = tablero.getCasilla(posicionNueva);
+        contabilizarPasosPorSalida(jugadorActual);
+        jugadorActual.moverACasilla(posicionNueva);
+        c.recibeJugador(indiceJugadorActual, jugadores);
+        contabilizarPasosPorSalida(jugadorActual);
+        
     }
     
     public boolean cancelarHipoteca(int ip){
