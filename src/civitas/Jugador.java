@@ -43,8 +43,22 @@ public class Jugador implements Comparable<Jugador>{
         salvoconducto = otro.salvoconducto;
     }
     
-    boolean cancelarHipoteca(int ip){
-        throw new UnsupportedOperationException("No implementado");
+    boolean cancelarHipoteca(int ip){                                   //Preguntar por esto
+        boolean resultado = false;
+        
+        if (!encarcelado && existeLaPropiedad(ip)){
+            TituloPropiedad propiedad = propiedades.get(ip);
+            float cantidad = propiedad.getImporteCancelarHipoteca();
+            
+            if (puedoGastar(cantidad))
+                resultado = propiedad.cancelarHipoteca(this);        
+        }
+        
+        if (resultado){
+            Diario.getInstance().ocurreEvento("El jugador " + nombre + "cancela la hipoteca de la propiedad " + ip);
+        }
+        
+        return resultado;
     }
     
     int cantidadCasasHoteles(){
