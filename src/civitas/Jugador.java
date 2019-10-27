@@ -78,15 +78,39 @@ public class Jugador implements Comparable<Jugador>{
     }
     
     boolean comprar(TituloPropiedad titulo){
-        throw new UnsupportedOperationException("No implementado");
+        boolean resultado = false;
+        
+        if(!encarcelado && puedeComprar){
+            float precio = titulo.getPrecioCompra();
+            
+            if (puedoGastar(precio)){
+                resultado = titulo.comprar(this);
+                
+                if (resultado){
+                    propiedades.add(titulo);
+                    Diario.getInstance().ocurreEvento("El jugador " + nombre + " compra la propiedad " + titulo.toString());             
+                }
+                
+                puedeComprar = false;
+            }
+        }
+        
+        return resultado;
     }
     
     boolean construirCasa(int ip){
         throw new UnsupportedOperationException("No implementado");
     }
     
-    boolean construirHotel(int ip){
-        throw new UnsupportedOperationException("No implementado");
+    boolean construirHotel(int ip){                                     //Preguntar sobre el diagrama
+        boolean resultado = false;
+        
+        if (!encarcelado && existeLaPropiedad(ip)){
+            TituloPropiedad propiedad = propiedades.get(ip);
+            
+        }
+        
+        return resultado;
     }
     
     protected boolean debeSerEncarcelado(){
@@ -166,7 +190,17 @@ public class Jugador implements Comparable<Jugador>{
     }
     
     boolean hipotecar(int ip){
-        throw new UnsupportedOperationException("No implementado");
+        boolean resultado = false;
+        
+        if (!encarcelado && existeLaPropiedad(ip)){
+            TituloPropiedad propiedad = propiedades.get(ip);
+            resultado = propiedad.hipotecar(this);
+        }
+        
+        if (resultado)
+            Diario.getInstance().ocurreEvento("El jugador " + nombre + " hipoteca la propiedad " + ip);
+        
+        return resultado;
     }
     
     public boolean isEncarcelado(){

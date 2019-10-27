@@ -85,10 +85,21 @@ public class Casilla {
             recibeJugador_juez(iactual, todos);
         else if (tipo == TipoCasilla.SORPRESA && correcto)
             recibeJugador_sorpresa(iactual, todos);
+        else
+            informe(iactual, todos);
     }
     
     private void recibeJugador_calle(int iactual, ArrayList<Jugador> todos){
-        throw new UnsupportedOperationException("No implementado");
+        if (jugadorCorrecto(iactual, todos)){
+            informe(iactual, todos);
+            Jugador jugador = todos.get(iactual);
+            
+            if (!tituloPropiedad.tienePropietario())
+                jugador.puedeComprarCasilla();                                      //Para qué llama a esto?
+            
+            else
+                tituloPropiedad.tramitarAlquiler(jugador);
+        }
     }
     
     private void recibeJugador_impuesto(int iactual, ArrayList<Jugador> todos){

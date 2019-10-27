@@ -87,7 +87,7 @@ public class TituloPropiedad {
     
     boolean comprar(Jugador jugador){
         boolean realizado = false;
-        if (propietario == null && jugador.getSaldo() >= precioCompra)
+        if (!tienePropietario() && jugador.getSaldo() >= precioCompra)
         {
             jugador.paga(precioCompra);
             propietario = jugador;
@@ -158,7 +158,15 @@ public class TituloPropiedad {
     }
     
     boolean hipotecar(Jugador jugador){
-        throw new UnsupportedOperationException("No implementado");
+        boolean salida = false;
+        
+        if (!hipotecado && esEsteElPropietario(jugador)){
+            propietario.recibe(getImporteHipoteca());
+            salida = true;
+            hipotecado = true;
+        }
+        
+        return salida;
     }
     
     boolean tienePropietario(){
@@ -169,7 +177,7 @@ public class TituloPropiedad {
     }
     
     void tramitarAlquiler(Jugador jugador){
-        if (propietario != null && jugador != propietario)
+        if (tienePropietario() && !esEsteElPropietario(jugador))
         {
             jugador.pagaAlquiler(getPrecioAlquiler());
             propietario.recibe(getPrecioAlquiler());
