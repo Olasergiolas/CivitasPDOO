@@ -52,7 +52,15 @@ public class CivitasJuego {
     }
     
     public boolean comprar(){
-        throw new UnsupportedOperationException("No implementado");
+        boolean resultado = false;
+        
+        Jugador jugadorActual = jugadores.get(indiceJugadorActual);
+        int numCasillaActual = jugadorActual.getNumCasillaActual();
+        Casilla casilla = tablero.getCasilla(numCasillaActual);
+        TituloPropiedad titulo = casilla.getTituloPropiedad();
+        resultado = jugadorActual.comprar(titulo);
+        
+        return resultado;
     }
     
     public boolean construirCasa(int ip){
@@ -128,7 +136,20 @@ public class CivitasJuego {
     }
     
     public OperacionesJuego siguientePaso(){
-        throw new UnsupportedOperationException("No implementado");
+        Jugador jugadorActual = jugadores.get(indiceJugadorActual);
+        OperacionesJuego operacion = gestorEstados.operacionesPermitidas(jugadorActual, estado);
+        
+        if (operacion == OperacionesJuego.PASAR_TURNO){
+            pasarTurno();
+            siguientePasoCompletado(operacion);
+        }
+        
+        else if(operacion == OperacionesJuego.AVANZAR){
+            avanzaJugador();
+            siguientePasoCompletado(operacion);
+        }
+        
+        return operacion;
     }
     
     public void siguientePasoCompletado(OperacionesJuego operacion){

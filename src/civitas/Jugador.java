@@ -102,12 +102,19 @@ public class Jugador implements Comparable<Jugador>{
         throw new UnsupportedOperationException("No implementado");
     }
     
-    boolean construirHotel(int ip){                                     //Preguntar sobre el diagrama
+    boolean construirHotel(int ip){                                     
         boolean resultado = false;
         
         if (!encarcelado && existeLaPropiedad(ip)){
             TituloPropiedad propiedad = propiedades.get(ip);
+            boolean puedoEdificarHotel = puedoEdificarHotel(propiedad);
             
+            if (puedoEdificarHotel){
+                resultado = propiedad.construirHotel(this);
+                CasasPorHotel = getCasasPorHotel();
+                propiedad.derruirCasas(CasasPorHotel, this);
+                Diario.getInstance().ocurreEvento("El jugador " + nombre + " construye un hotel en la propiedad " + ip);
+            }
         }
         
         return resultado;
@@ -280,8 +287,12 @@ public class Jugador implements Comparable<Jugador>{
     
     private boolean puedoEdificarCasa(TituloPropiedad propiedad){
         boolean retorno = false;
-        if (propiedad.getPropietario() == this && saldo >= propiedad.getPrecioEdificar() && propiedad.getNumCasas() < 4)
+        float precio = propiedad.getPrecioEdificar();
+        
+        if (puedoGastar(precio) && propiedad.getNumHoteles() < getHotelesMax() && propiedad.getNumCasas() >= getCasasPorHotel()){
             retorno = true;
+        }
+        
         return retorno;
     }
     

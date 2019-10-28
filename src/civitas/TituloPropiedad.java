@@ -73,8 +73,9 @@ public class TituloPropiedad {
     
     boolean cancelarHipoteca(Jugador jugador){
         boolean realizado = false;
-        if (hipotecado && jugador == propietario && jugador.getSaldo() >= getImporteCancelarHipoteca())
+        if (hipotecado && esEsteElPropietario(jugador) && jugador.getSaldo() >= getImporteCancelarHipoteca())
         {
+            propietario.paga(getImporteCancelarHipoteca());
             hipotecado = false;
             realizado = true;
         }
@@ -101,7 +102,15 @@ public class TituloPropiedad {
     }
     
     boolean construirHotel(Jugador jugador){
-        throw new UnsupportedOperationException("No implementado");
+        boolean resultado = false;
+        
+        if (esEsteElPropietario(jugador)){
+            propietario.paga(precioEdificar);
+            numHoteles++;
+            resultado = true;
+        }
+        
+        return resultado;
     }
     
     boolean derruirCasas(int n, Jugador jugador){
