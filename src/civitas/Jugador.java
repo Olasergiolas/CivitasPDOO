@@ -181,7 +181,7 @@ public class Jugador implements Comparable<Jugador>{
     }
     
     private float getPremioPasoSalida(){
-        return 1000;
+        return PasoPorSalida;
     }
     
     protected ArrayList<TituloPropiedad> getPropiedades(){   
@@ -261,7 +261,7 @@ public class Jugador implements Comparable<Jugador>{
     }
     
     boolean pasaPorSalida(){
-        modificarSaldo(1000);
+        modificarSaldo(PasoPorSalida);
         Diario.getInstance().ocurreEvento("El jugador " + nombre + " recibe 1000€ por pasar por salida");
         return true;
     }
@@ -280,7 +280,7 @@ public class Jugador implements Comparable<Jugador>{
     
     private boolean puedeSalirCarcelPagando(){
         boolean retorno = false;
-        if (saldo >= 200)
+        if (saldo >= PrecioLibertad)
             retorno = true;
         return retorno;
     }
@@ -324,7 +324,7 @@ public class Jugador implements Comparable<Jugador>{
         boolean retorno = false;
         if (encarcelado && puedeSalirCarcelPagando())
         {
-            paga(200);
+            paga(PrecioLibertad);
             encarcelado = false;
             Diario.getInstance().ocurreEvento("El jugador " + nombre + " sale de la cárcel pagando.");
             retorno = true;
