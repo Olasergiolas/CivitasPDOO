@@ -85,8 +85,6 @@ public class Casilla {
             recibeJugador_juez(iactual, todos);
         else if (tipo == TipoCasilla.SORPRESA && correcto)
             recibeJugador_sorpresa(iactual, todos);
-        else
-            informe(iactual, todos);
     }
     
     private void recibeJugador_calle(int iactual, ArrayList<Jugador> todos){
