@@ -1,4 +1,4 @@
-/*package juegoTexto;
+package juegoTexto;
 
 import civitas.CivitasJuego;
 import civitas.Diario;
@@ -76,19 +76,38 @@ class VistaTextual {
     return (SalidasCarcel.values()[opcion]);
   }
 
-  Respuestas comprar() {}
+  Respuestas comprar() {
+    int opcion = menu ("¿Desea comprar la calle a la que ha llegado?",
+      new ArrayList<> (Arrays.asList("No","Si")));
+    return (Respuestas.values()[opcion]);
+  }
 
-  void gestionar () {}
+  void gestionar () {
+    iGestion = menu ("¿Número de gestión a elegir?",
+      new ArrayList<> (Arrays.asList("Vender","Hipotecar", "Cancelar Hipoteca", "Construir Casa", "Construir Hotel", "Terminar")));
+    
+    iPropiedad = menu ("¿Número de propiedad a gestionar?", juegoModel.getJugadorActual().nombreToString());
+  }
   
-  public int getGestion(){}
+  public int getGestion(){
+      return iGestion;
+  }
   
-  public int getPropiedad(){}
+  public int getPropiedad(){
+      return iPropiedad;
+  }
     
 
-  void mostrarSiguienteOperacion(OperacionesJuego operacion) {}
+  void mostrarSiguienteOperacion(OperacionesJuego operacion) {
+      System.out.println(operacion);
+  }
 
 
-  void mostrarEventos() {}
+  void mostrarEventos() {
+      while (Diario.getInstance().eventosPendientes()){
+          System.out.println(Diario.getInstance().leerEvento());
+      }
+  }
   
   public void setCivitasJuego(CivitasJuego civitas){ 
         juegoModel=civitas;
@@ -96,6 +115,8 @@ class VistaTextual {
 
     }
   
-  void actualizarVista(){} 
+  void actualizarVista(){
+      juegoModel.getJugadorActual().toString();
+      juegoModel.getCasillaActual().toString();
+  } 
 }
-*/

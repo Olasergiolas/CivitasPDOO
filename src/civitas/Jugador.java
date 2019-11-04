@@ -379,4 +379,13 @@ public class Jugador implements Comparable<Jugador>{
         return retorno;
     }
     
+    public ArrayList<String> nombreToString(){
+        ArrayList<String> nombres = new ArrayList<String>();
+        
+        for (int i = 0; i < propiedades.size(); i++){
+            nombres.add(propiedades.get(i).getNombre());
+        }
+        
+        return nombres;
+    }
 }
