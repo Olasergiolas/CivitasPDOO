@@ -26,6 +26,7 @@ public class Jugador implements Comparable<Jugador>{
     private Sorpresa salvoconducto;
     
     Jugador(String nombre){
+        propiedades = new ArrayList<TituloPropiedad>();
         this.nombre = nombre;
         encarcelado = false;
         puedeComprar = true;
@@ -98,8 +99,25 @@ public class Jugador implements Comparable<Jugador>{
         return resultado;
     }
     
-    boolean construirCasa(int ip){
-        throw new UnsupportedOperationException("No implementado");
+boolean construirCasa(int ip){
+        boolean resultado = false;
+        boolean puedoEdificarCasa = false;
+        
+        if (!encarcelado && existeLaPropiedad(ip)){
+            TituloPropiedad propiedad = propiedades.get(ip);
+            puedoEdificarCasa = puedoEdificarCasa(propiedad);
+            float precio = propiedad.getPrecioEdificar();
+            
+            if (puedoEdificarCasa){
+                resultado = propiedad.construirCasa(this);
+                
+                if (resultado)
+                    Diario.getInstance().ocurreEvento("El jugador " + nombre + " construye casa en la propiedad " + ip);
+            }
+            
+            
+        }
+        return resultado;
     }
     
     boolean construirHotel(int ip){                                     
@@ -289,9 +307,8 @@ public class Jugador implements Comparable<Jugador>{
         boolean retorno = false;
         float precio = propiedad.getPrecioEdificar();
         
-        if (puedoGastar(precio) && propiedad.getNumHoteles() < getHotelesMax() && propiedad.getNumCasas() >= getCasasPorHotel()){
+        if (puedoGastar(precio) && propiedad.getNumCasas() < getCasasMax())
             retorno = true;
-        }
         
         return retorno;
     }
@@ -358,7 +375,7 @@ public class Jugador implements Comparable<Jugador>{
     }
     
     public String toString(){
-        String retorno = "encarcelado-" + encarcelado + " nombre-" + nombre + " numCasillaActual-" + numCasillaActual;
+        String retorno = "Jugador " + nombre + " ¿Encarcelado?-" + encarcelado +  " y está en la casilla " + numCasillaActual;
         for (int i = 0; i < propiedades.size(); i++)
             retorno += "titulo" + i + propiedades.get(i).toString();
         

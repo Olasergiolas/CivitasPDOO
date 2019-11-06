@@ -110,6 +110,23 @@ public class Casilla {
     }
     
     public String toString(){
-        return (nombre + " carcel-" + carcel + " importe-" + importe + " sorpresa-" + sorpresa.toString() + " titulo-" + tituloPropiedad.toString());
+        String salida = new String();
+        
+        if (tipo == TipoCasilla.DESCANSO)
+            salida = nombre + " de tipo " + tipo;
+        
+        else if (tipo == TipoCasilla.CALLE)
+            salida = tituloPropiedad.toString();
+        
+        else if (tipo == TipoCasilla.IMPUESTO)
+            salida = nombre + " de tipo " + tipo + " con importe " + importe;
+        
+        else if (tipo == TipoCasilla.JUEZ)
+            salida = nombre + " de tipo " + tipo + " con la carcel en " + carcel;
+        
+        else if (tipo == TipoCasilla.SORPRESA)
+            salida = nombre + " de tipo " + tipo + "con un mazo " + mazo.toString();
+        
+        return salida;
     }
 }

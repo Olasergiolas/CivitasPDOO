@@ -19,12 +19,15 @@ public class CivitasJuego {
     private EstadosJuego estado;
     private GestorEstados gestorEstados;
     
-    public CivitasJuego(String[] nombres){
-        for (int i = 0; i < nombres.length; i++)
-            jugadores.add(i, new Jugador(nombres[i]));
+    public CivitasJuego(ArrayList<String> nombres){
+        jugadores = new ArrayList<Jugador>();
+        
+        for (int i = 0; i < nombres.size(); i++)
+            jugadores.add(i, new Jugador(nombres.get(i)));
         
         tablero = new Tablero(5);
         mazo = new MazoSorpresas();
+        estado = EstadosJuego.INICIO_TURNO;
         inicializarTablero(mazo);
         inicializarMazoSorpresas(tablero);
     }
@@ -84,7 +87,8 @@ public class CivitasJuego {
     }
     
     public Casilla getCasillaActual(){
-        return tablero.getCasilla(jugadores.get(indiceJugadorActual).getNumCasillaActual());
+        Casilla aux = tablero.getCasilla(jugadores.get(indiceJugadorActual).getNumCasillaActual());
+        return aux;
     }
     
     public Jugador getJugadorActual(){
@@ -109,10 +113,17 @@ public class CivitasJuego {
     private void inicializarTablero(MazoSorpresas mazo){                                            
         ArrayList<Casilla> c = new ArrayList<Casilla>();
         c.add(new Casilla(200, "Impuesto"));
-        c.add(new Casilla(5, "Cárcel"));
-        c.add(new Casilla(new TituloPropiedad()));
+        //c.add(new Casilla(5, "Cárcel"));
+        c.add(new Casilla(new TituloPropiedad("Calle Albaricoque", 0, 0, 0, 0, 0)));
         c.add(new Casilla(mazo, "Sorpresa"));
         c.add(new Casilla("Descanso"));
+        c.add(new Casilla(new TituloPropiedad("Calle ESPAÑA", 0, 0, 0, 0, 0)));
+        
+        for (int i = 0; i < c.size(); i++){
+            tablero.aniadeCasilla(c.get(i));
+        }
+        
+        tablero.aniadeJuez();
     }
     
     private void pasarTurno(){
@@ -122,7 +133,7 @@ public class CivitasJuego {
             indiceJugadorActual = 0;
     }
     
-    private ArrayList<Jugador> ranking(){
+    public ArrayList<Jugador> ranking(){
         Collections.sort(jugadores);
         return jugadores;
     }

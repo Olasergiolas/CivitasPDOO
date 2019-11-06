@@ -116,7 +116,10 @@ class VistaTextual {
     }
   
   void actualizarVista(){
-      juegoModel.getJugadorActual().toString();
-      juegoModel.getCasillaActual().toString();
+      Jugador auxJ = juegoModel.getJugadorActual();
+      System.out.println(auxJ.toString());
+      
+      Casilla auxC = juegoModel.getCasillaActual();
+      System.out.println(auxC.toString());
   } 
 }
