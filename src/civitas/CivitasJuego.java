@@ -28,6 +28,7 @@ public class CivitasJuego {
         tablero = new Tablero(5);
         mazo = new MazoSorpresas();
         estado = EstadosJuego.INICIO_TURNO;
+        gestorEstados = new GestorEstados();
         inicializarTablero(mazo);
         inicializarMazoSorpresas(tablero);
     }
