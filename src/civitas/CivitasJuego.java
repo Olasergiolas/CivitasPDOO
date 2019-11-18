@@ -113,7 +113,7 @@ public class CivitasJuego {
     
     private void inicializarTablero(MazoSorpresas mazo){                                            
         ArrayList<Casilla> c = new ArrayList<Casilla>();
-        c.add(new Casilla(200, "Impuesto"));
+        c.add(new Casilla(200f, "Impuesto"));
         //c.add(new Casilla(5, "Cárcel"));
         c.add(new Casilla(new TituloPropiedad("Calle Albaricoque", 0, 0, 0, 0, 0)));
         c.add(new Casilla(mazo, "Sorpresa"));
@@ -128,7 +128,7 @@ public class CivitasJuego {
     }
     
     private void pasarTurno(){
-        if (indiceJugadorActual < jugadores.size())
+        if (indiceJugadorActual < jugadores.size()-1)
             indiceJugadorActual++;
         else
             indiceJugadorActual = 0;

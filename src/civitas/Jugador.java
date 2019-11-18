@@ -169,7 +169,7 @@ boolean construirCasa(int ip){
     
     private boolean existeLaPropiedad(int ip){
         boolean retorno = false;
-        if (ip > 0 && ip < propiedades.size())
+        if (ip >= 0 && ip < propiedades.size())
             retorno = true;
         return retorno;
     }

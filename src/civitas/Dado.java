@@ -22,7 +22,7 @@ public class Dado {
         //próximamente
     }
     
-    static Dado getInstance(){
+    public static Dado getInstance(){
         return instance;
     }
     
@@ -51,7 +51,7 @@ public class Dado {
         return (int)(Math.random() * n) ;
     }
     
-    void setDebug(boolean d){
+    public void setDebug(boolean d){
         debug = d;
         
         if (debug)

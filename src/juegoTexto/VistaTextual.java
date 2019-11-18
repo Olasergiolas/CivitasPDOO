@@ -86,7 +86,8 @@ class VistaTextual {
     iGestion = menu ("¿Número de gestión a elegir?",
       new ArrayList<> (Arrays.asList("Vender","Hipotecar", "Cancelar Hipoteca", "Construir Casa", "Construir Hotel", "Terminar")));
     
-    iPropiedad = menu ("¿Número de propiedad a gestionar?", juegoModel.getJugadorActual().nombreToString());
+    if (iGestion != 5)
+        iPropiedad = menu ("¿Número de propiedad a gestionar?", juegoModel.getJugadorActual().nombreToString());
   }
   
   public int getGestion(){

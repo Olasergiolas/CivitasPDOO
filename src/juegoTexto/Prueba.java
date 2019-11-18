@@ -24,6 +24,7 @@ public class Prueba {
         jugadores.add("Alberto");
         jugadores.add("Cuack");
         
+        Dado.getInstance().setDebug(true);
         CivitasJuego juego = new CivitasJuego(jugadores);
         Controlador controlador = new Controlador(juego, vista);
         

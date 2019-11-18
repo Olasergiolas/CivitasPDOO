@@ -42,9 +42,7 @@ public class TituloPropiedad {
     
     public String toString()
     {
-        return (nombre + " aB" + alquilerBase + " fI" + factorInteresesHipoteca + " fR" + factorRevalorizacion + 
-                " hB" + hipotecaBase + " h" + " " + hipotecado + " nC" + numCasas + " nH" + numHoteles + " pC" + precioCompra
-                + " pE" + precioEdificar);
+        return (nombre + " " + numCasas + " " + numHoteles + " Hipotecado: " + hipotecado);
     }
     
     private float getPrecioAlquiler()

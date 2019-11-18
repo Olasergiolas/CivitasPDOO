@@ -68,7 +68,7 @@ public class Casilla {
     
     public boolean jugadorCorrecto(int iactual, ArrayList<Jugador> todos){
         boolean retorno = false;
-        if (iactual > 0 && iactual < todos.size())
+        if (iactual >= 0 && iactual < todos.size())
             retorno = true;
         return retorno;
     }
