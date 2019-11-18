@@ -122,5 +122,7 @@ class VistaTextual {
       
       Casilla auxC = juegoModel.getCasillaActual();
       System.out.println(auxC.toString());
+      
+      System.out.println("\n");
   } 
 }

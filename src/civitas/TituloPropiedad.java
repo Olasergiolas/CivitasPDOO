@@ -96,7 +96,15 @@ public class TituloPropiedad {
     }
     
     boolean construirCasa(Jugador jugador){
-        throw new UnsupportedOperationException("No implementado");
+        boolean resultado = false;
+        
+        if (esEsteElPropietario(jugador)){
+            propietario.paga(precioEdificar);
+            numCasas++;
+            resultado = true;
+        }
+        
+        return resultado;
     }
     
     boolean construirHotel(Jugador jugador){

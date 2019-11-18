@@ -54,7 +54,7 @@ public class Casilla {
     }
     
     private void informe(int iactual, ArrayList<Jugador> todos){
-        Diario.getInstance().ocurreEvento("El jugador " + iactual + "ha caído en la casilla " + nombre);
+        Diario.getInstance().ocurreEvento("El jugador " + iactual + " ha caído en la casilla " + nombre);
     }
     
     private void init(){
@@ -106,7 +106,11 @@ public class Casilla {
     }
     
     private void recibeJugador_sorpresa(int iactual, ArrayList<Jugador> todos){
-        throw new UnsupportedOperationException("No implementado");
+        if (jugadorCorrecto(iactual, todos)){
+            Sorpresa sorpresa = mazo.siguiente();
+            informe(iactual, todos);
+            sorpresa.aplicarAJugador(iactual, todos);
+        }
     }
     
     public String toString(){

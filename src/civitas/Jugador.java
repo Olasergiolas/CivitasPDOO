@@ -375,7 +375,7 @@ boolean construirCasa(int ip){
     }
     
     public String toString(){
-        String retorno = "Jugador " + nombre + " ¿Encarcelado?-" + encarcelado +  " y está en la casilla " + numCasillaActual;
+        String retorno = "Jugador " + nombre + " ¿Encarcelado?-" + encarcelado + " con saldo  " + saldo + ", en la casilla " + numCasillaActual;
         for (int i = 0; i < propiedades.size(); i++)
             retorno += "titulo" + i + propiedades.get(i).toString();
         
@@ -389,7 +389,7 @@ boolean construirCasa(int ip){
             if (propiedades.get(ip).vender(this))
             {
                 propiedades.remove(ip);
-                Diario.getInstance().ocurreEvento("El jugador " + nombre + " vende la propiedad " + propiedades.get(ip).getNombre());
+                Diario.getInstance().ocurreEvento("El jugador " + nombre + " vende la propiedad " + ip);
                 retorno = true;
             }
         }
