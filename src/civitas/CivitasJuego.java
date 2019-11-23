@@ -105,10 +105,11 @@ public class CivitasJuego {
     }
     
     private void inicializarMazoSorpresas(Tablero tablero){                 
-        mazo.alMazo(new Sorpresa(TipoSorpresa.IRCARCEL, tablero));
-        mazo.alMazo(new Sorpresa(TipoSorpresa.IRCASILLA, tablero, 200, "sorpresa IRCARCEL"));
-        mazo.alMazo(new Sorpresa(TipoSorpresa.SALIRCARCEL, mazo));
-        mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR, 200, "sorpresa PAGARCOBRAR"));
+        //mazo.alMazo(new Sorpresa(TipoSorpresa.IRCARCEL, tablero));       
+        //mazo.alMazo(new Sorpresa(TipoSorpresa.SALIRCARCEL, mazo));
+        //mazo.alMazo(new Sorpresa(TipoSorpresa.PAGARCOBRAR, 200, "sorpresa PAGARCOBRAR"));
+        //mazo.alMazo(new Sorpresa(TipoSorpresa.IRCASILLA, tablero, 0, "sorpresa IRCASILLA"));
+        mazo.alMazo(new Sorpresa(TipoSorpresa.PORJUGADOR, 200, "sorpresa PORJUGADOR"));
     }
     
     private void inicializarTablero(MazoSorpresas mazo){
@@ -116,7 +117,6 @@ public class CivitasJuego {
         ArrayList<Casilla> c = new ArrayList<Casilla>();
         c.add(casSorp);
         c.add(new Casilla(200f, "Impuesto"));
-        //c.add(new Casilla(5, "Cárcel"));
         c.add(new Casilla(new TituloPropiedad("Calle Albaricoque", 0, 0, 0, 0, 0)));
         c.add(new Casilla(mazo, "Sorpresa"));
         c.add(new Casilla("Descanso"));

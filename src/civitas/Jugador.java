@@ -186,7 +186,7 @@ boolean construirCasa(int ip){
         return HotelesMax;
     }
     
-    protected String getNombre(){
+    String getNombre(){
         return nombre;
     }
     
@@ -375,7 +375,7 @@ boolean construirCasa(int ip){
     }
     
     public String toString(){
-        String retorno = "Jugador " + nombre + " ¿Encarcelado?-" + encarcelado + " con saldo  " + saldo + ", en la casilla " + numCasillaActual;
+        String retorno = "Jugador " + nombre + " ¿Encarcelado?-" + encarcelado + " con saldo  " + saldo + ", en la casilla " + numCasillaActual + ", salvoconducto? " + tieneSalvoconducto();
         for (int i = 0; i < propiedades.size(); i++)
             retorno += "titulo" + i + propiedades.get(i).toString();
         
@@ -404,5 +404,9 @@ boolean construirCasa(int ip){
         }
         
         return nombres;
+    }
+    
+    public int getNumPropiedades(){
+        return propiedades.size();
     }
 }

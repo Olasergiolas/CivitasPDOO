@@ -54,7 +54,7 @@ public class Casilla {
     }
     
     private void informe(int iactual, ArrayList<Jugador> todos){
-        Diario.getInstance().ocurreEvento("El jugador " + iactual + " ha caído en la casilla " + nombre);
+        Diario.getInstance().ocurreEvento("El jugador " + iactual + " ha caído en una casilla " + toString());
     }
     
     private void init(){
@@ -106,31 +106,23 @@ public class Casilla {
     }
     
     private void recibeJugador_sorpresa(int iactual, ArrayList<Jugador> todos){
-        if (jugadorCorrecto(iactual, todos)){
+        /*if (jugadorCorrecto(iactual, todos)){
             Sorpresa sorpresa = mazo.siguiente();
             informe(iactual, todos);
             sorpresa.aplicarAJugador(iactual, todos);
-        }
+        }*/
+        
+        mazo.siguiente().aplicarAJugador(iactual, todos);
     }
     
     public String toString(){
         String salida = new String();
         
-        if (tipo == TipoCasilla.DESCANSO)
-            salida = nombre + " de tipo " + tipo;
+        if (tipo == TipoCasilla.CALLE)
+            salida = "Casilla " + tituloPropiedad.getNombre() + " con importe " + tituloPropiedad.getPrecioCompra() + " de tipo " + tipo;
         
-        else if (tipo == TipoCasilla.CALLE)
-            salida = tituloPropiedad.toString();
-        
-        else if (tipo == TipoCasilla.IMPUESTO)
-            salida = nombre + " de tipo " + tipo + " con importe " + importe;
-        
-        else if (tipo == TipoCasilla.JUEZ)
-            salida = nombre + " de tipo " + tipo + " con la carcel en " + carcel;
-        
-        else if (tipo == TipoCasilla.SORPRESA)
-            salida = nombre + " de tipo " + tipo + "con un mazo " + mazo.toString();
-        
+        else
+            salida = "Casilla " + nombre + " con importe " + importe + " de tipo " + tipo;
         return salida;
     }
 }

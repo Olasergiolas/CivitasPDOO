@@ -17,13 +17,13 @@ public class Sorpresa {
     private TipoSorpresa tipo;
     private MazoSorpresas mazo;
     
-    Sorpresa(TipoSorpresa tipo, Tablero tablero){
+    Sorpresa(TipoSorpresa tipo, Tablero tablero){               //Mandar a cárcel
         init();
         this.tipo = tipo;
         this.tablero = tablero;
     }
     
-    Sorpresa(TipoSorpresa tipo, Tablero tablero, int valor, String texto){
+    Sorpresa(TipoSorpresa tipo, Tablero tablero, int valor, String texto){      //Mandar a otra casilla
         init();
         this.tipo = tipo;
         this.tablero = tablero;
@@ -31,7 +31,7 @@ public class Sorpresa {
         this.texto = texto;
     }
     
-    Sorpresa(TipoSorpresa tipo, int valor, String texto)
+    Sorpresa(TipoSorpresa tipo, int valor, String texto)          //resto de sorpresas
     {
         init();
         this.tipo = tipo;
@@ -39,7 +39,7 @@ public class Sorpresa {
         this.texto = texto;
     }
     
-    Sorpresa(TipoSorpresa tipo, MazoSorpresas mazo){
+    Sorpresa(TipoSorpresa tipo, MazoSorpresas mazo){            //evitar cárcel
         init();
         this.tipo = tipo;
         this.mazo = mazo;
@@ -49,7 +49,7 @@ public class Sorpresa {
         boolean correcto = jugadorCorrecto(actual, todos);
         if (correcto)
             informe(actual, todos);
-        if (tipo == TipoSorpresa.SALIRCARCEL && correcto)
+        if (tipo == TipoSorpresa.IRCARCEL && correcto)
             aplicarAJugador_irCarcel(actual, todos);
         else if (tipo == TipoSorpresa.IRCASILLA && correcto)
             aplicarAJugador_irACasilla(actual, todos);
@@ -81,7 +81,7 @@ public class Sorpresa {
     }
     
     private void aplicarAJugador_porCasaHotel(int actual, ArrayList<Jugador> todos){
-        todos.get(actual).modificarSaldo(valor*todos.get(actual).getCasasPorHotel());
+        todos.get(actual).modificarSaldo(valor*todos.get(actual).getNumPropiedades());
     }
     
     private void aplicarAJugador_porJugador(int actual, ArrayList<Jugador> todos){
@@ -109,7 +109,7 @@ public class Sorpresa {
     }
     
     private void informe(int actual, ArrayList<Jugador> todos){
-        Diario.getInstance().ocurreEvento("Se le aplica la sorpresa" + texto + " a " + todos.get(actual).getNombre());
+        Diario.getInstance().ocurreEvento("Aplicando sorpresa al jugador " + todos.get(actual).getNombre());
     }
     
     private void init(){
@@ -120,7 +120,7 @@ public class Sorpresa {
     
     public boolean jugadorCorrecto(int actual, ArrayList<Jugador> todos){
         boolean retorno = false;
-        if (actual > 0 && actual < todos.size())
+        if (actual >= 0 && actual < todos.size())
             retorno = true;
         return retorno;
     }
@@ -131,7 +131,7 @@ public class Sorpresa {
     }
     
     public String toString(){
-        return ("texto-" + texto + " valor-" + valor);
+        return ("tipo- " + tipo + "texto-" + texto + " valor-" + valor);
     }
     
     void usada(){
