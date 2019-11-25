@@ -10,12 +10,17 @@ import java.util.ArrayList;
  *
  * @author sergio
  */
-public class Sorpresa {
+class Sorpresa {
     private String texto;
     private int valor;
     private Tablero tablero;
     private TipoSorpresa tipo;
     private MazoSorpresas mazo;
+    
+    Sorpresa(String texto)
+    {
+        this.texto = texto;
+    }
     
     Sorpresa(TipoSorpresa tipo, Tablero tablero){               //Mandar a cárcel
         init();
@@ -108,8 +113,8 @@ public class Sorpresa {
         }
     }
     
-    private void informe(int actual, ArrayList<Jugador> todos){
-        Diario.getInstance().ocurreEvento("Aplicando sorpresa al jugador " + todos.get(actual).getNombre());
+    void informe(int actual, ArrayList<Jugador> todos){
+        Diario.getInstance().ocurreEvento("Al jugador " + todos.get(actual).getNombre() + " se le aplica una sorpresa " + toString());
     }
     
     private void init(){

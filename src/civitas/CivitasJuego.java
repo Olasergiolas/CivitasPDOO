@@ -61,7 +61,7 @@ public class CivitasJuego {
         Jugador jugadorActual = jugadores.get(indiceJugadorActual);
         int numCasillaActual = jugadorActual.getNumCasillaActual();
         Casilla casilla = tablero.getCasilla(numCasillaActual);
-        TituloPropiedad titulo = casilla.getTituloPropiedad();
+        TituloPropiedad titulo = ((CasillaCalle) casilla).getTituloPropiedad();
         resultado = jugadorActual.comprar(titulo);
         
         return resultado;
@@ -113,14 +113,14 @@ public class CivitasJuego {
     }
     
     private void inicializarTablero(MazoSorpresas mazo){
-        Casilla casSorp = new Casilla(mazo, "Sorpresa");
+        CasillaSorpresa casSorp = new CasillaSorpresa(mazo, "Sorpresa");
         ArrayList<Casilla> c = new ArrayList<Casilla>();
         c.add(casSorp);
-        c.add(new Casilla(200f, "Impuesto"));
-        c.add(new Casilla(new TituloPropiedad("Calle Albaricoque", 0, 0, 0, 0, 0)));
-        c.add(new Casilla(mazo, "Sorpresa"));
+        c.add(new CasillaImpuesto(200f, "Impuesto"));
+        c.add(new CasillaCalle(new TituloPropiedad("Albaricoque", 0, 0, 0, 0, 0)));
+        c.add(new CasillaSorpresa(mazo, "Sorpresa"));
         c.add(new Casilla("Descanso"));
-        c.add(new Casilla(new TituloPropiedad("Calle ESPAÑA", 0, 0, 0, 0, 0)));
+        c.add(new CasillaCalle(new TituloPropiedad("ESPAÑA", 0, 0, 0, 0, 0)));
         
         
         for (int i = 0; i < c.size(); i++){
