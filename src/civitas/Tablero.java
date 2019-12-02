@@ -76,7 +76,7 @@ public class Tablero {
         CasillaJuez Juez = new CasillaJuez(numCasillaCarcel, "Juez");
         if (!tieneJuez)
         {
-            casillas.add(Juez);
+            aniadeCasilla(Juez);
             tieneJuez = true;
         }
     }

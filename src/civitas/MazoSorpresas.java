@@ -8,10 +8,6 @@ package civitas;
 import java.util.ArrayList;
 import java.util.Collections;
 
-/**
- *
- * @author sergio
- */
 public class MazoSorpresas {
     
     private ArrayList<Sorpresa> sorpresas;

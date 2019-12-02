@@ -30,6 +30,8 @@ public class SorpresaIrCasilla extends Sorpresa{
             int casillaActual,  nueva_posicion;
             casillaActual = todos.get(actual).getNumCasillaActual();
             nueva_posicion = tablero.NuevaPosicion(casillaActual, tablero.calcularTirada(casillaActual, numCasilla));
+            if (nueva_posicion == todos.get(actual).getNumCasillaActual())
+                nueva_posicion = 0;
             todos.get(actual).moverACasilla(nueva_posicion);
             tablero.getCasilla(numCasilla).recibeJugador(actual, todos);
         }
@@ -38,8 +40,6 @@ public class SorpresaIrCasilla extends Sorpresa{
     @Override
     public String toString()
     {
-        String salida = new String();
-        salida = "IRCASILLA";
-        return salida;
+        return ("IRCASILLA");
     }
 }

@@ -23,7 +23,7 @@ public class Jugador implements Comparable<Jugador>{
     private float saldo;
     private float saldoInicial = 7500f;
     private ArrayList<TituloPropiedad> propiedades;
-    private Sorpresa salvoconducto;
+    private SorpresaSalirCarcel salvoconducto;
     
     Jugador(String nombre){
         propiedades = new ArrayList<TituloPropiedad>();
@@ -234,7 +234,7 @@ boolean construirCasa(int ip){
     
     boolean modificarSaldo(float cantidad){
         saldo += cantidad;
-        Diario.getInstance().ocurreEvento("Se le incrementa el saldo al jugador " + nombre + " en " + cantidad + " euros.");
+        Diario.getInstance().ocurreEvento("Se le suma " + cantidad + " al saldo de " + nombre);
         return true;
     }
     
@@ -250,7 +250,7 @@ boolean construirCasa(int ip){
         return retorno;
     }
     
-    boolean obtenerSalvoconducto(Sorpresa sorpresa){
+    boolean obtenerSalvoconducto(SorpresaSalirCarcel sorpresa){
         boolean retorno = false;
         if (!encarcelado)
         {

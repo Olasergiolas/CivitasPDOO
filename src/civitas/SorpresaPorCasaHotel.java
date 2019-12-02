@@ -4,20 +4,18 @@
  * and open the template in the editor.
  */
 package civitas;
-
 import java.util.ArrayList;
-
 /**
  *
  * @author ggarr
  */
-public class SorpresaIrCarcel extends Sorpresa {
-    private Tablero tablero;
+public class SorpresaPorCasaHotel extends Sorpresa {
+    private int valor;
     
-    SorpresaIrCarcel(Tablero tablero, String texto)
+    SorpresaPorCasaHotel(int valor, String texto)
     {
         super(texto);
-        this.tablero = tablero;
+        this.valor = valor;
     }
     
     @Override
@@ -25,13 +23,13 @@ public class SorpresaIrCarcel extends Sorpresa {
         if (jugadorCorrecto(actual, todos))
         {
             informe(actual, todos);
-            todos.get(actual).encarcelar(tablero.getCarcel());
+            todos.get(actual).modificarSaldo(valor*todos.get(actual).getNumPropiedades());
         }
     }
     
     @Override
     public String toString()
     {
-        return ("IRCARCEL");
+        return("PORCASAHOTEL");
     }
 }
