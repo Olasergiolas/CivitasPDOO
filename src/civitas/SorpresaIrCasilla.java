@@ -40,6 +40,6 @@ public class SorpresaIrCasilla extends Sorpresa{
     @Override
     public String toString()
     {
-        return ("IRCASILLA");
+        return ("Ir Casilla");
     }
 }

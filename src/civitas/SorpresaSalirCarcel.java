@@ -40,7 +40,7 @@ public class SorpresaSalirCarcel extends Sorpresa {
     @Override
     public String toString()
     {
-        return ("SALIRCARCEL");
+        return ("Salir Cárcel");
     }
     
     void usada()

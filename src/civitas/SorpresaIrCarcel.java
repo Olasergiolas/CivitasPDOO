@@ -32,6 +32,6 @@ public class SorpresaIrCarcel extends Sorpresa {
     @Override
     public String toString()
     {
-        return ("IRCARCEL");
+        return ("Ir Cárcel");
     }
 }

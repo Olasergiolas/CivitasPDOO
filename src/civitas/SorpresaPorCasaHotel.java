@@ -30,6 +30,6 @@ public class SorpresaPorCasaHotel extends Sorpresa {
     @Override
     public String toString()
     {
-        return("PORCASAHOTEL");
+        return("Por Casa Hotel");
     }
 }

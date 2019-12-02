@@ -4,32 +4,31 @@
  * and open the template in the editor.
  */
 package civitas;
+
 import java.util.ArrayList;
-/**
- *
- * @author ggarr
- */
-public class SorpresaPagarCobrar extends Sorpresa {
-    private int valor;
+
+public class SorpresaConversion extends Sorpresa {
+    JugadorEspeculador especulador;
     
-    SorpresaPagarCobrar(int valor, String texto)
+    SorpresaConversion(String texto)
     {
         super(texto);
-        this.valor = valor;
     }
-    
+  
     @Override
     void aplicarAJugador(int actual, ArrayList<Jugador> todos){
         if (jugadorCorrecto(actual, todos))
         {
             informe(actual, todos);
-            todos.get(actual).modificarSaldo(valor);
+            especulador = new JugadorEspeculador(todos.get(actual), 200);
+            todos.remove(actual);
+            todos.add(especulador);
         }
     }
     
     @Override
     public String toString()
     {
-        return ("Pagar Cobrar");
+        return ("Conversión A Especulador");
     }
 }

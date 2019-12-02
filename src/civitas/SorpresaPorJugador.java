@@ -37,6 +37,6 @@ public class SorpresaPorJugador extends Sorpresa {
     @Override
     public String toString()
     {
-        return ("PORJUGADOR");
+        return ("Por Jugador");
     }
 }
