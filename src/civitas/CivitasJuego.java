@@ -104,12 +104,13 @@ public class CivitasJuego {
         return jugadores.get(indiceJugadorActual).toString();
     }
     
-    private void inicializarMazoSorpresas(Tablero tablero){                 
-        mazo.alMazo(new SorpresaIrCarcel(tablero, "Ir cárcel"));       
-        mazo.alMazo(new SorpresaSalirCarcel(mazo, "Salir cárcel"));
-        mazo.alMazo(new SorpresaPagarCobrar(200, "sorpresa PAGARCOBRAR"));
-        mazo.alMazo(new SorpresaIrCasilla(tablero, 0, "sorpresa IRCASILLA"));
-        mazo.alMazo(new SorpresaPorJugador(200, "sorpresa PORJUGADOR"));
+    private void inicializarMazoSorpresas(Tablero tablero){       
+        mazo.alMazo(new SorpresaConversion(500, "Conversión a Especulador"));
+//        mazo.alMazo(new SorpresaIrCarcel(tablero, "Ir cárcel"));       
+//        mazo.alMazo(new SorpresaSalirCarcel(mazo, "Salir cárcel"));
+//        mazo.alMazo(new SorpresaPagarCobrar(200, "sorpresa PAGARCOBRAR"));
+//        mazo.alMazo(new SorpresaIrCasilla(tablero, 0, "sorpresa IRCASILLA"));
+//        mazo.alMazo(new SorpresaPorJugador(200, "sorpresa PORJUGADOR"));
     }
     
     private void inicializarTablero(MazoSorpresas mazo){

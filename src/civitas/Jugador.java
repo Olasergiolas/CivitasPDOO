@@ -29,7 +29,7 @@ public class Jugador implements Comparable<Jugador>{
         propiedades = new ArrayList<TituloPropiedad>();
         this.nombre = nombre;
         encarcelado = false;
-        puedeComprar = true;
+        puedeComprar = false;
         saldo = saldoInicial;
         salvoconducto = null;
     }
@@ -306,8 +306,9 @@ boolean construirCasa(int ip){
     private boolean puedoEdificarCasa(TituloPropiedad propiedad){
         boolean retorno = false;
         float precio = propiedad.getPrecioEdificar();
+        int max = getCasasMax();
         
-        if (puedoGastar(precio) && propiedad.getNumCasas() < getCasasMax())
+        if (puedoGastar(precio) && propiedad.getNumCasas() < max)
             retorno = true;
         
         return retorno;

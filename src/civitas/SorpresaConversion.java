@@ -8,11 +8,13 @@ package civitas;
 import java.util.ArrayList;
 
 public class SorpresaConversion extends Sorpresa {
+    private int valor;
     JugadorEspeculador especulador;
     
-    SorpresaConversion(String texto)
+    SorpresaConversion(int valor, String texto)
     {
         super(texto);
+        this.valor = valor;
     }
   
     @Override
@@ -20,7 +22,7 @@ public class SorpresaConversion extends Sorpresa {
         if (jugadorCorrecto(actual, todos))
         {
             informe(actual, todos);
-            especulador = new JugadorEspeculador(todos.get(actual), 200);
+            especulador = new JugadorEspeculador(todos.get(actual), valor);
             todos.remove(actual);
             todos.add(especulador);
         }

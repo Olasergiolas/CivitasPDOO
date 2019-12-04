@@ -22,4 +22,29 @@ public class JugadorEspeculador extends Jugador {
         for (int i = 0; i < jugador.getNumPropiedades(); i++)
             jugador.getPropiedades().get(i).actualizaPropietarioPorConversion(this);
     }
+    
+    @Override
+    public String toString(){
+        String retorno = "Jugador Especulador " + getNombre() + " ¿Encarcelado?-" + encarcelado + " con saldo  " + getSaldo() + ", en la casilla " + getNumCasillaActual() + ", salvoconducto? " + tieneSalvoconducto();
+        for (int i = 0; i < getPropiedades().size(); i++)
+            retorno += "titulo" + i + getPropiedades().get(i).toString();
+        
+        return retorno;
+    }
+    
+    @Override
+    boolean pagaImpuesto(float cantidad){
+        boolean retorno = false;
+        if (!encarcelado)
+            retorno = paga(cantidad/2f);
+        return retorno;
+    }
+    
+    private int getCasasMax(){
+        return CasasMax;
+    }
+    
+    private int getHotelesMax(){
+        return HotelesMax;
+    }
 }
