@@ -21,7 +21,7 @@ public class Controlador {
     private CivitasJuego juego;
     private CivitasView vista;
     
-    Controlador(CivitasJuego juego, CivitasView vista){
+    public Controlador(CivitasJuego juego, CivitasView vista){
         this.juego = juego;
         this.vista = vista;
     }
