@@ -9,7 +9,7 @@ package civitas;
  *
  * @author rullow
  */
-public class TestP1 {
+public class TestP5 {
     
     void test(){
         int[] jugador = new int[4];
@@ -74,7 +74,7 @@ public class TestP1 {
     
     public static void main(String[] args)
     {
-        TestP1 Jugador = new TestP1();
+        TestP5 Jugador = new TestP5();
         
         Jugador.test();
     }
