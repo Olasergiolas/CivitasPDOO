@@ -42,7 +42,7 @@ public class Jugador implements Comparable<Jugador>{
         salvoconducto = otro.salvoconducto;
     }
     
-    boolean cancelarHipoteca(int ip){                                   //Preguntar por esto
+    boolean cancelarHipoteca(int ip){                                   
         boolean resultado = false;
         
         if (!encarcelado && existeLaPropiedad(ip)){
@@ -184,7 +184,7 @@ boolean construirCasa(int ip){
         return HotelesMax;
     }
     
-    String getNombre(){
+    public String getNombre(){
         return nombre;
     }
     
@@ -208,7 +208,7 @@ boolean construirCasa(int ip){
         return puedeComprar;
     }
     
-    protected float getSaldo(){
+    public float getSaldo(){
         return saldo;
     }
     
