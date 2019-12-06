@@ -5,7 +5,6 @@
  */
 package GUI;
 
-import juegoTexto.*;
 import civitas.CivitasJuego;
 import civitas.GestionesInmobiliarias;
 import civitas.OperacionInmobiliaria;
@@ -20,14 +19,14 @@ import civitas.Jugador;
  */
 public class Controlador {
     private CivitasJuego juego;
-    private VistaTextual vista;
+    private CivitasView vista;
     
-    Controlador(CivitasJuego juego, VistaTextual vista){
+    Controlador(CivitasJuego juego, CivitasView vista){
         this.juego = juego;
         this.vista = vista;
     }
     
-    void juega(){
+    /*void juega(){
         vista.setCivitasJuego(juego);
         
         while (!juego.finalDelJuego()){
@@ -91,5 +90,5 @@ public class Controlador {
         for (int i = 0; i < ranking.size(); i++){
             ranking.get(i).toString();
         }
-    }
+    }*/
 }

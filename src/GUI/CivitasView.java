@@ -18,6 +18,7 @@ public class CivitasView extends javax.swing.JFrame {
      */
     
     private CivitasJuego juego;
+    
     public CivitasView() {
         initComponents();
     }

@@ -5,11 +5,9 @@
  */
 package civitas;
 import java.util.ArrayList;
+import GUI.Dado;
 
-/**
- *
- * @author rullow
- */
+
 public class Jugador implements Comparable<Jugador>{
     protected static int CasasMax = 4;
     protected static int CasasPorHotel = 4;
