@@ -144,15 +144,15 @@ public class TituloPropiedad {
         return (hipotecaBase*(1+numCasas*0.5f+numHoteles*2.5f));
     }
     
-    String getNombre(){
+    public String getNombre(){
         return nombre;
     }
     
-    int getNumCasas(){
+    public int getNumCasas(){
         return numCasas;
     }
     
-    int getNumHoteles(){
+    public int getNumHoteles(){
         return numHoteles;
     }
     

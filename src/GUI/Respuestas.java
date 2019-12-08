@@ -5,8 +5,6 @@
  */
 package GUI;
 
-import juegoTexto.*;
-
 /**
  *
  * @author sergio

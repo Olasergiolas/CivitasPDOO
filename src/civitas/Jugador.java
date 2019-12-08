@@ -200,7 +200,7 @@ boolean construirCasa(int ip){
         return PasoPorSalida;
     }
     
-    protected ArrayList<TituloPropiedad> getPropiedades(){   
+    public ArrayList<TituloPropiedad> getPropiedades(){   
         return propiedades;
     }
     
