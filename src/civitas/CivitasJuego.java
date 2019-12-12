@@ -145,6 +145,16 @@ public class CivitasJuego {
         return jugadores;
     }
     
+    public ArrayList<String> rankingS(){
+        ArrayList<String> res = new ArrayList<String>();
+        Collections.sort(jugadores);
+        
+        for (Jugador j: jugadores)
+            res.add(j.getNombre());
+        
+        return res;
+    }
+    
     public boolean salirCarcelPagando(){
         return jugadores.get(indiceJugadorActual).salirCarcelPagando();
     }
