@@ -79,7 +79,7 @@ public class CivitasView extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
+        tituloL = new javax.swing.JLabel();
         contenedorVistaJugador = new javax.swing.JPanel();
         casillaT = new javax.swing.JTextField();
         siguienteOperacionL = new javax.swing.JLabel();
@@ -90,18 +90,24 @@ public class CivitasView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("CIVITAS");
-        jLabel1.setEnabled(false);
+        tituloL.setFont(new java.awt.Font("Noto Sans", 1, 20)); // NOI18N
+        tituloL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        tituloL.setText("CIVITAS");
+        tituloL.setEnabled(false);
 
-        casillaT.setText("jTextField1");
         casillaT.setEnabled(false);
+        casillaT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                casillaTActionPerformed(evt);
+            }
+        });
 
         siguienteOperacionL.setText("Siguiente operación: ");
         siguienteOperacionL.setEnabled(false);
 
-        siguienteOperacionT.setText("jTextField1");
         siguienteOperacionT.setEnabled(false);
 
+        rankingL.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         rankingL.setText("RÁNKING");
         rankingL.setEnabled(false);
 
@@ -125,25 +131,26 @@ public class CivitasView extends javax.swing.JFrame {
                         .addComponent(casillaT, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 370, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(rankingL)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(contenedorVistaJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(77, 77, 77))
-                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                    .addComponent(jLabel1)
-                                    .addGap(394, 394, 394)))))))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(307, 307, 307)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(contenedorVistaJugador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(77, 77, 77))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(tituloL)
+                                .addGap(370, 370, 370))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(rankingL, javax.swing.GroupLayout.PREFERRED_SIZE, 79, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(362, 362, 362))))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 307, Short.MAX_VALUE))
+                .addGap(260, 260, 260))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
+                .addComponent(tituloL)
                 .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(siguienteOperacionL)
@@ -155,11 +162,15 @@ public class CivitasView extends javax.swing.JFrame {
                 .addComponent(rankingL)
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(256, Short.MAX_VALUE))
+                .addContainerGap(249, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void casillaTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_casillaTActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_casillaTActionPerformed
 
     /**
      * @param args the command line arguments
@@ -199,11 +210,11 @@ public class CivitasView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField casillaT;
     private javax.swing.JPanel contenedorVistaJugador;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel rankingL;
     private javax.swing.JTextArea rankingT;
     private javax.swing.JLabel siguienteOperacionL;
     private javax.swing.JTextField siguienteOperacionT;
+    private javax.swing.JLabel tituloL;
     // End of variables declaration//GEN-END:variables
 }

@@ -33,6 +33,7 @@ public class Controlador {
             vista.actualizarVista();
             //vista.pausa();
             OperacionesJuego operacion = juego.siguientePaso();
+            vista.mostrarSiguienteOperacion(operacion);
             if (operacion != OperacionesJuego.PASAR_TURNO){
                 vista.mostrarEventos();
             }
