@@ -20,6 +20,7 @@ public class CivitasView extends javax.swing.JFrame {
     
     private CivitasJuego juego;
     private JugadorPanel jugadorPanel;
+    private GestionarDialog gestionarD;
     
     public CivitasView() {
         initComponents();
@@ -67,6 +68,36 @@ public class CivitasView extends javax.swing.JFrame {
         if (opcion == 1)
             salida = Respuestas.NO;
         
+        return salida;
+    }
+    
+    int getGestion()
+    {
+        return gestionarD.getGestionElegida();
+    }
+    
+    int getPropiedad()
+    {
+        return gestionarD.getPropiedadElegida();
+    }
+    
+    void gestionar()
+    {
+        gestionarD.pack();
+        gestionarD.gestionar(juego.getJugadorActual());
+        gestionarD.revalidate();
+    }
+    
+    SalidasCarcel salirCarcel()
+    {
+        String[] opciones = {"Pagando","Tirando"};
+        
+        int respuesta = JOptionPane.showOptionDialog(null, "¿Cómo quieres salir de la cárcel?",
+                "Salir de la cárcel", JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE,null, opciones, opciones[0]);
+        
+        SalidasCarcel salida = SalidasCarcel.PAGANDO;
+        if (respuesta == 1)
+            salida = SalidasCarcel.TIRANDO;
         return salida;
     }
 

@@ -172,8 +172,10 @@ public class GestionarDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
-        this.dispose();
+        gestionElegida = listaGestiones.getSelectedIndex();     //supongo que irá así ??
+        propiedadElegida = listaPropiedades.getSelectedIndex(); //supongo que irá así ??
+        if (gestionElegida != -1)
+            this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void listaGestionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaGestionesMouseClicked

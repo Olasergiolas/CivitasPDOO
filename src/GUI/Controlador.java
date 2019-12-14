@@ -47,7 +47,7 @@ public class Controlador {
                     juego.siguientePasoCompletado(operacion);
                 }
                 
-                /*else if(operacion == OperacionesJuego.GESTIONAR){
+                else if(operacion == OperacionesJuego.GESTIONAR){
                     vista.gestionar();
                     GestionesInmobiliarias gestion = GestionesInmobiliarias.values()[vista.getGestion()];
                     int indice = vista.getPropiedad();
@@ -82,7 +82,7 @@ public class Controlador {
                         juego.salirCarcelTirando();
                     
                     juego.siguientePasoCompletado(operacion);
-                }*/
+                }
             }
         }
         
