@@ -27,11 +27,6 @@ public class GestionarDialog extends javax.swing.JDialog {
         gestionElegida = -1;
     }
     
-    private void listaGestionesMouseClicked(java.awt.event.MouseEvent evt)
-    {
-        propiedadElegida = listaGestiones.getSelectedIndex();
-    }
-    
     public int getPropiedadElegida()
     {
         return propiedadElegida;
@@ -55,7 +50,12 @@ public class GestionarDialog extends javax.swing.JDialog {
     
     public void setPropiedades(Jugador jugador)
     {
+        DefaultListModel propiedades = new DefaultListModel<>();
+        ArrayList<String> opciones = jugador.nombreToString();
+        for (String s: opciones)
+            propiedades.addElement(s);
         
+        listaPropiedades.setModel(propiedades);
     }
     
     public void gestionar(Jugador jugador)
@@ -101,6 +101,11 @@ public class GestionarDialog extends javax.swing.JDialog {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        listaGestiones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listaGestionesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(listaGestiones);
 
         listaPropiedades.setModel(new javax.swing.AbstractListModel<String>() {
@@ -108,10 +113,15 @@ public class GestionarDialog extends javax.swing.JDialog {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        listaPropiedades.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listaPropiedadesMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(listaPropiedades);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
@@ -162,8 +172,19 @@ public class GestionarDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        
+        this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void listaGestionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaGestionesMouseClicked
+        // TODO add your handling code here:
+        gestionElegida = listaGestiones.getSelectedIndex();
+    }//GEN-LAST:event_listaGestionesMouseClicked
+
+    private void listaPropiedadesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaPropiedadesMouseClicked
+        // TODO add your handling code here:
+        propiedadElegida = listaPropiedades.getSelectedIndex();
+    }//GEN-LAST:event_listaPropiedadesMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

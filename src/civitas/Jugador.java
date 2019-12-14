@@ -172,7 +172,7 @@ boolean construirCasa(int ip){
         return retorno;
     }
     
-    private int getCasasMax(){
+    int getCasasMax(){
         return CasasMax;
     }
     
@@ -180,7 +180,7 @@ boolean construirCasa(int ip){
         return CasasPorHotel;
     }
     
-    private int getHotelesMax(){
+    int getHotelesMax(){
         return HotelesMax;
     }
     
