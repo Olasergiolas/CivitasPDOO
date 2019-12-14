@@ -6,6 +6,7 @@
 package GUI;
 
 import civitas.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -52,6 +53,21 @@ public class CivitasView extends javax.swing.JFrame {
     public void setCivitasJuego(CivitasJuego j){
         juego = j;
         setVisible(true);
+    }
+    
+    void mostrarEventos()
+    {
+        DiarioDialog diarioD = new DiarioDialog(this);
+    }
+    
+    Respuestas comprar()
+    {
+        int opcion = JOptionPane.showConfirmDialog(null, "¿Quieres comprar la calle actual?","Compra",JOptionPane.YES_NO_OPTION);
+        Respuestas salida = Respuestas.SI;
+        if (opcion == 1)
+            salida = Respuestas.NO;
+        
+        return salida;
     }
 
     /**

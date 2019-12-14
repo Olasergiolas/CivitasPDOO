@@ -26,12 +26,12 @@ public class Controlador {
         this.vista = vista;
     }
     
-    /*void juega(){
+    public void juega(){
         vista.setCivitasJuego(juego);
         
         while (!juego.finalDelJuego()){
             vista.actualizarVista();
-            vista.pausa();
+            //vista.pausa();
             OperacionesJuego operacion = juego.siguientePaso();
             if (operacion != OperacionesJuego.PASAR_TURNO){
                 vista.mostrarEventos();
@@ -46,7 +46,7 @@ public class Controlador {
                     juego.siguientePasoCompletado(operacion);
                 }
                 
-                else if(operacion == OperacionesJuego.GESTIONAR){
+                /*else if(operacion == OperacionesJuego.GESTIONAR){
                     vista.gestionar();
                     GestionesInmobiliarias gestion = GestionesInmobiliarias.values()[vista.getGestion()];
                     int indice = vista.getPropiedad();
@@ -81,7 +81,7 @@ public class Controlador {
                         juego.salirCarcelTirando();
                     
                     juego.siguientePasoCompletado(operacion);
-                }
+                }*/
             }
         }
         
@@ -90,5 +90,5 @@ public class Controlador {
         for (int i = 0; i < ranking.size(); i++){
             ranking.get(i).toString();
         }
-    }*/
+    }
 }

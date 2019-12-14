@@ -4,18 +4,36 @@
  * and open the template in the editor.
  */
 package GUI;
+import civitas.Diario;
 
 /**
  *
  * @author ggarr
  */
 public class DiarioDialog extends javax.swing.JDialog {
-
+    private Diario d = Diario.getInstance();
     /**
      * Creates new form DiarioDialog
      */
-    public DiarioDialog() {
+    public DiarioDialog(java.awt.Frame parent) {
+        super(parent, true);
         initComponents();
+        setLocationRelativeTo(null);
+    }
+    
+    void mostrarEventos()
+    {
+        if (d.eventosPendientes())
+        {
+            while (d.eventosPendientes())
+            {
+                eventos.setText(d.leerEvento());
+                eventos.setText("\n");
+            }
+            setVisible(true);
+            repaint();
+            revalidate();
+        }
     }
 
     /**
@@ -27,19 +45,65 @@ public class DiarioDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        label = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        eventos = new javax.swing.JTextArea();
+        ok_button = new javax.swing.JButton();
+
+        label.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        label.setText("Eventos");
+
+        eventos.setColumns(20);
+        eventos.setFont(new java.awt.Font("Dialog", 0, 13)); // NOI18N
+        eventos.setRows(5);
+        jScrollPane1.setViewportView(eventos);
+
+        ok_button.setText("OK");
+        ok_button.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ok_buttonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(ok_button)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(15, 15, 15)
+                            .addComponent(label))
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(29, 29, 29)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 340, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(label)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(ok_button)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void ok_buttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ok_buttonActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_ok_buttonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextArea eventos;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel label;
+    private javax.swing.JButton ok_button;
     // End of variables declaration//GEN-END:variables
 }
