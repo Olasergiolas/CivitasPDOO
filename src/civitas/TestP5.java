@@ -13,6 +13,7 @@ public class TestP5 {
     public static void test(){
         CivitasView vista = new CivitasView();
         Dado.createInstance(vista);
+        //Dado.getInstance().setDebug(Boolean.TRUE);
         CapturaNombres captura = new CapturaNombres(vista, true);
         
         ArrayList<String> nombres = new ArrayList<String>();

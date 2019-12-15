@@ -30,6 +30,7 @@ public class CivitasJuego {
         mazo = new MazoSorpresas();
         estado = EstadosJuego.INICIO_TURNO;
         gestorEstados = new GestorEstados();
+        indiceJugadorActual = GUI.Dado.getInstance().quienEmpieza(nombres.size());
         inicializarTablero(mazo);
         inicializarMazoSorpresas(tablero);
     }

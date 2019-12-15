@@ -23,8 +23,7 @@ public class SorpresaConversion extends Sorpresa {
         {
             informe(actual, todos);
             especulador = new JugadorEspeculador(todos.get(actual), valor);
-            todos.remove(actual);
-            todos.add(especulador);
+            todos.set(actual, especulador);
         }
     }
     
