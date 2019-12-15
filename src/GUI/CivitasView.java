@@ -25,6 +25,7 @@ public class CivitasView extends javax.swing.JFrame {
     public CivitasView() {
         initComponents();
         jugadorPanel = new JugadorPanel();
+        gestionarD = new GestionarDialog(this);
         contenedorVistaJugador.add(jugadorPanel);
         repaint();
         revalidate();

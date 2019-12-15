@@ -62,6 +62,7 @@ public class GestionarDialog extends javax.swing.JDialog {
     {
         setGestiones();
         setPropiedades(jugador);
+        setVisible(true);
         repaint();
     }
 
