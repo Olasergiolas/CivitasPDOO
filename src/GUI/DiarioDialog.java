@@ -19,17 +19,21 @@ public class DiarioDialog extends javax.swing.JDialog {
         super(parent, true);
         initComponents();
         setLocationRelativeTo(null);
+        pack();
+        mostrarEventos();
     }
     
     void mostrarEventos()
     {
+        String aux = "";
         if (d.eventosPendientes())
         {
             while (d.eventosPendientes())
             {
-                eventos.setText(d.leerEvento());
-                eventos.setText("\n");
+                aux += d.leerEvento();
+                aux += "\n";
             }
+            eventos.setText(aux);
             setVisible(true);
             repaint();
             revalidate();
@@ -65,8 +69,8 @@ public class DiarioDialog extends javax.swing.JDialog {
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
