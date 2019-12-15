@@ -85,11 +85,5 @@ public class Controlador {
                 }
             }
         }
-        
-        ArrayList<Jugador> ranking = juego.ranking();
-        
-        for (int i = 0; i < ranking.size(); i++){
-            ranking.get(i).toString();
-        }
     }
 }
