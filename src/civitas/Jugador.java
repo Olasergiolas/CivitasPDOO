@@ -306,7 +306,7 @@ boolean construirCasa(int ip){
         float precio = propiedad.getPrecioEdificar();
         int max = getCasasMax();
         
-        if (puedoGastar(precio) && propiedad.getNumCasas() < max)
+        if (propiedad.getPropietario() == this && puedoGastar(precio) && propiedad.getNumCasas() < max)
             retorno = true;
         
         return retorno;
@@ -314,7 +314,9 @@ boolean construirCasa(int ip){
     
     private boolean puedoEdificarHotel(TituloPropiedad propiedad){
         boolean retorno = false;
-        if (propiedad.getPropietario() == this && saldo >= propiedad.getPrecioEdificar() && propiedad.getNumHoteles() < 4)
+        int max = getHotelesMax();
+        float precio = propiedad.getPrecioEdificar();
+        if (propiedad.getPropietario() == this && puedoGastar(precio) && propiedad.getNumCasas() >= CasasPorHotel && propiedad.getNumHoteles() < max)
             retorno = true;
         return retorno;
     }
