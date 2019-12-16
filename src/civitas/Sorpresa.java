@@ -31,6 +31,6 @@ public abstract class Sorpresa {
     }
     
     public String toString(){
-        return ("DESCANSO");
+        return (" ");
     } 
 }
