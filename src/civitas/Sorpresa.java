@@ -14,10 +14,7 @@ public abstract class Sorpresa {
         this.texto = texto;
     }
     
-    void aplicarAJugador(int actual, ArrayList<Jugador> todos){
-        if (jugadorCorrecto(actual, todos))
-            informe(actual, todos);
-    }
+    abstract void aplicarAJugador(int actual, ArrayList<Jugador> todos);
      
     void informe(int actual, ArrayList<Jugador> todos){
         Diario.getInstance().ocurreEvento("Al jugador " + todos.get(actual).getNombre() + " se le aplica una sorpresa " + toString());
@@ -30,7 +27,5 @@ public abstract class Sorpresa {
         return retorno;
     }
     
-    public String toString(){
-        return (" ");
-    } 
+    public abstract String toString();
 }
