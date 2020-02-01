@@ -25,6 +25,16 @@ public class TituloPropiedad {
     TituloPropiedad()
     {
         propietario = null;
+        alquilerBase = 0;
+        factorInteresesHipoteca = 0;
+        factorRevalorizacion = 0;
+        hipotecaBase = 0;
+        hipotecado = false;
+        nombre = "";
+        numCasas = 0;
+        numHoteles = 0;
+        precioCompra = 0;
+        precioEdificar = 0;
     }
  
     TituloPropiedad(String nom, float ab, float fr, float hb, float pc, float pe)

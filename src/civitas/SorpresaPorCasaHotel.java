@@ -23,7 +23,7 @@ public class SorpresaPorCasaHotel extends Sorpresa {
         if (jugadorCorrecto(actual, todos))
         {
             informe(actual, todos);
-            todos.get(actual).modificarSaldo(valor*todos.get(actual).getNumPropiedades());
+            todos.get(actual).modificarSaldo(valor*todos.get(actual).cantidadCasasHoteles());
         }
     }
     

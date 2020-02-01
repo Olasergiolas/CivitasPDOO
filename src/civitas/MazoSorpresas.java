@@ -65,7 +65,7 @@ public class MazoSorpresas {
     
     void inhabilitarCartaEspecial(Sorpresa sorpresa){
         if (sorpresas.contains(sorpresa)){
-                sorpresas.remove(sorpresa);             //Debería funcionar?¿?¿
+                sorpresas.remove(sorpresa);             
                 cartasEspeciales.add(sorpresa);
                 Diario.getInstance().ocurreEvento("Carta especial en el mazo inhabilitada");
         }                  

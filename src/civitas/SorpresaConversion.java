@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 public class SorpresaConversion extends Sorpresa {
     private int valor;
-    JugadorEspeculador especulador;
     
     SorpresaConversion(int valor, String texto)
     {
@@ -22,7 +21,7 @@ public class SorpresaConversion extends Sorpresa {
         if (jugadorCorrecto(actual, todos))
         {
             informe(actual, todos);
-            especulador = new JugadorEspeculador(todos.get(actual), valor);
+            JugadorEspeculador especulador = new JugadorEspeculador(todos.get(actual), valor);
             todos.set(actual, especulador);
         }
     }

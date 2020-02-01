@@ -84,8 +84,11 @@ public class CivitasJuego {
     
     public boolean finalDelJuego(){
         boolean retorno = false;
-        for (int i = 0; i < jugadores.size() && jugadores.get(i).enBancarrota(); i++)
-            retorno = jugadores.get(i).enBancarrota();
+        for (int i = 0; i < jugadores.size() && !retorno; i++){
+            if (jugadores.get(i).enBancarrota())
+                retorno = true;
+        }
+        
         return retorno;
     }
     

@@ -26,7 +26,7 @@ public class SorpresaSalirCarcel extends Sorpresa {
         {
             informe(actual, todos);
             boolean alguien_tiene = false;
-            for (int i = 0; i < todos.size(); i++)
+            for (int i = 0; i < todos.size() && !alguien_tiene; i++)
                 alguien_tiene = todos.get(i).tieneSalvoconducto();
 
             if (!alguien_tiene)

@@ -41,6 +41,24 @@ public class JugadorEspeculador extends Jugador {
     }
     
     @Override
+    protected boolean debeSerEncarcelado(){
+        boolean res = true;
+        
+        if (super.debeSerEncarcelado() == true){
+            if (getSaldo() > fianza){
+                paga(fianza);
+                Diario.getInstance().ocurreEvento("El jugador especulador paga la fianza y se libra de la cárcel");
+                res = false;
+            }
+        }
+        
+        else
+            res = false;
+        
+        return res;
+    }
+    
+    @Override
     int getCasasMax(){
         return CasasMax;
     }
